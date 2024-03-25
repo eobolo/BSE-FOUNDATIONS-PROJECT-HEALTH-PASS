@@ -14,4 +14,9 @@ urlpatterns = [
     # blood work path
     path("blood_work_create/", views3.BloodWorkCreateView.as_view(), name="blood_work_create"),
     path("blood_work_read/", views3.BloodWorkListView.as_view(), name="blood_work_read"),
+    path("blood_work_read_update/", views3.BloodWorkUpdateListView.as_view(), name="blood_work_read_update"),
+    path("blood_work_update/<int:pk>/", views3.BloodWorkUpdateView.as_view(), name="blood_work_update"),
+    path("blood_work_read_delete/", views3.BloodWorkDeleteListView.as_view(), name="blood_work_read_delete"),
+    path("blood_work_delete/<int:pk>/", views3.BloodWorkDeleteView.as_view(), name="blood_work_delete"),
+
 ]
