@@ -58,7 +58,14 @@ class UserHome(View):
             If both case come out False render the custom home page
             will add some context soon.
             """
-            return render(request, self.template_name)
+            # create context variable
+            context = {}
+            context['user'] = request.user
+
+            # return context variable with request and template name
+            return render(request, self.template_name, context)
+
+        # if user is not authenticated
         login_url = reverse("login") + "?" + urlencode({"next": request.path})
         response = redirect(login_url)
 

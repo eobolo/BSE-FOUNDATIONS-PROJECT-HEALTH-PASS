@@ -30,7 +30,7 @@ class OWNERLISTVIEW(LoginRequiredMixin, ListView):
         qs = qs.filter(owner=self.request.user)
         # save both error and success messages based on the value of qs
         if qs:
-            messages.success(self.request, f"User {self.model.__name__} details :)")
+            messages.success(self.request, f"{self.model.__name__} data found for {self.request.user.first_name} :)")
             return qs
-        messages.error(self.request, f"No data found for User {self.model} :(")
+        messages.error(self.request, f"No {self.model.__name__} data found for {self.request.user.first_name} :(")
         return qs
