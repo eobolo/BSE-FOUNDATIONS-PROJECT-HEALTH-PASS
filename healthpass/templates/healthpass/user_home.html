@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang=en">
+    <head>
+        <title>User HomePage</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header>
+            <nav>
+                <!-- Add the read blood, urinal analysis, and general info links here. -->
+                <p>
+                <a href="{% url 'logout' %}?next={% url 'login' %}">Log out</a>
+                </p>
+            </nav>
+        </header>
+        <main>
+            {% include 'healthpass/messages.html' %}
+            <div>
+                <h1>Welcome to your Homepage</h1>
+                <p>Hello, User</p>
+            </div>
+        </main>
+    </body>
+</html>
