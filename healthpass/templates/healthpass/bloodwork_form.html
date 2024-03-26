@@ -13,9 +13,10 @@
         {% endif %}
         {% include 'healthpass/messages.html' %}
         <div>
+            {% load crispy_forms_tags %}
             <form method="post" action="" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form|crispy }}
                 <p>
                     <label style="display: none;" for="blood_submit"></label>
                     <input style="display: none;" id="blood_submit" type="submit" name="blood_submit" value="blood">

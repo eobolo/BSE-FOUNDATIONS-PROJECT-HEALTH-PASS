@@ -8,9 +8,10 @@
     <body>
         {% include 'healthpass/messages.html' %}
         <div>
+            {% load crispy_forms_tags %}
             <form method="post" action="{% url 'health:custom_login' %}">
                 {% csrf_token %}
-                {{ custom_login_form.as_p }}
+                {{ custom_login_form|crispy }}
                 <p>
                     <label style="display: none;" for="custom_signin"></label>
                     <input style="display: none;" id="custom_signin" type="submit" name="custom_signin" value="signin">

@@ -13,9 +13,10 @@
             </div>
         {% endif %}
         <div>
+            {% load crispy_forms_tags %}
             <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form|crispy }}
                 <p>
                     <label style="display: none;" for="user_signin"></label>
                     <input style="display: none;" id="user_signin" type="submit" name="user_signin" value="signin">
