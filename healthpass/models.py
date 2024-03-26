@@ -14,7 +14,9 @@ class CustomUser(AbstractUser):
     groups = models.ManyToManyField('auth.Group', related_name='custom_user_groups')
     user_permissions = models.ManyToManyField('auth.Permission', related_name='custom_user_permissions')
 
-# Info utility function
+
+"""BloodWork and Info utility function"""
+
 def user_directory_path(instance, filename):
     # file will be uploaded to
     # MEDIA_ROOT/photos/user_<id>/%Y/%m/%d/<filename>
@@ -247,3 +249,225 @@ class BloodWork(models.Model):
     blood_work_image_file = models.FileField(
         upload_to=user_directory_path,
     )
+
+
+"""General Info"""
+
+class Gender(models.Model):
+    GENDER_CHOICES = [
+        ("M", "Male"),
+        ("F", "Female"),
+    ]
+    gender = models.CharField(
+        max_length=5,
+        choices=GENDER_CHOICES,
+        unique=True,
+    )
+
+    def __str__(self):
+        return "{0}".format(self.gender)
+
+class Relationship(models.Model):
+    RELATIONSHIP_CHOICES = [
+        ("Grandfather", "GF"),
+        ("Grandmother", "GM"),
+        ("Father", "F"),
+        ("Mother", "M"),
+        ("Uncle", "U"),
+        ("Aunt", "A"),
+        ("Son", "S"),
+        ("Daughter", "D"),
+        ("Grandson", "GS"),
+        ("Granddaughter", "GD"),
+        ("Brother", "BRO"),
+        ("Sister", "SIS"),
+        ("Cousin", "C"),
+        ("Nephew", "N"),
+        ("Niece", "NC"),
+    ]
+    relationship = models.CharField(
+        max_length=50,
+        choices=RELATIONSHIP_CHOICES,
+        unique=True,
+    )
+
+    def __str__(self):
+        return "{0}".format(self.relationship)
+
+class Immunization(models.Model):
+    IMMUNIZATION_CHOICES = [
+        ("Hepatitis B", "HEPB"),
+        ("Diphtheria, Tetanus, and Whooping Cough(Pertussis)", "DTAP"),
+        ("Haemophilus Influenzae Type B", "HIB"),
+        ("Polio", "IPV"),
+        ("Pneumococcal", "PCV"),
+        ("Rotavirus", "RV"),
+        ("Influenza", "FLU"),
+        ("Chickenpox", "VARICELLA"),
+        ("Measles, Mumps, Rubella", "MMR"),
+        ("Hepatitis A", "HEPA"),
+        ("Human Papillomavirus", "HPV"),
+        ("Meningococcal Conjugate", "MENACWY"),
+        ("Serogroup B Meningococcal", "MENB"),
+        ("Pentavalent", "MENABCWY"),
+        ("Shingles", "ZOSTER"),
+    ]
+    immunization = models.CharField(
+        max_length=300,
+        choices=IMMUNIZATION_CHOICES,
+        unique=True,
+    )
+    
+    def __str__(self):
+        return "{0}".format(self.immunization)
+
+class Allergy(models.Model):
+    ALLERGY_CHOICES = [
+        ("Balsam of Peru", "Balsam of Peru"),
+        ("Buckwheat", "Buckwheat"),
+        ("Celery", "Celery"),
+        ("Egg", "Egg"),
+        ("Fish", "Fish"),
+        ("Fruit", "Fruit"),
+        ("Garlic", "Garlic"),
+        ("Oats", "Oats"),
+        ("Maize", "Maize"),
+        ("Milk", "Milk"),
+        ("Mustard", "Mustard"),
+        ("Peanut", "Peanut"),
+        ("Poultry Meat", "Poultry Meat"),
+        ("Red Meat", "Red Meat"),
+        ("Rice", "Rice"),
+        ("Sesame", "Sesame"),
+        ("Shellfish", "Shellfish"),
+        ("Soy", "Soy"),
+        ("Sulfites", "Sulfites"),
+        ("Tartrazine", "Tartrazine"),
+        ("Tree nut", "Tree nut"),
+        ("Wheat", "Wheat"),
+        ("Tetracycline", "Tetracycline"),
+        ("Dilantin", "Dilantin"),
+        ("Tegretol", "Tegretol"),
+        ("Penicillin", "Penicillin"),
+        ("Cephalosporins", "Cephalosporins"),
+        ("Sulfonamides", "Sulfonamides"),
+        ("Non-steroidal anti-inflammatories", "Non-steroidal anti-inflammatories"),
+        ("Intravenous contrast dye", "Intravenous contrast dye"),
+        ("Local anesthetics", "Local anesthetics"),
+        ("Pollen", "Pollen"),
+        ("Cat", "Cat"),
+        ("Dog", "Dog"),
+        ("Insect sting", "Insect sting"),
+        ("Mold", "Mold"),
+        ("Perfume", "Perfume"),
+        ("Cosmetics", "Cosmetics"),
+        ("Semen", "Semen"),
+        ("Latex", "Latex"),
+        ("Cold stimuli", "Cold stimuli"),
+        ("House dust mite", "House dust mite"),
+        ("Nickel", "Nickel"),
+        ("Gold", "Gold"),
+        ("Chromium", "Chromium"),
+        ("Cobalt", "Cobalt"),
+        ("Formaldehyde", "Formaldehyde"),
+        ("Photographic developers", "Photographic developers"),
+        ("Fungicide", "Fungicide"),
+        ("Dimethylaminopropylamine", "Dimethylaminopropylamine"),
+        ("Latex", "Latex"),
+        ("Paraphenylenediamine", "Paraphenylenediamine"),
+        ("Glyceryl monothioglycolate", "Glyceryl monothioglycolate"),
+        ("Toluenesulfonamide formaldehyde", "Toluenesulfonamide formaldehyde"),
+    ]
+    allergy = models.CharField(
+        max_length=400,
+        choices=ALLERGY_CHOICES,
+        unique=True,
+    )
+
+    def __str__(self):
+        return "{0}".format(self.allergy)
+
+class Country(models.Model):
+    COUNTRY_CHOICES = [
+        # AFRICA COUNTRIES
+        ("Algeria", "DZA"),
+        ("Angola", "AGO"),
+        ("Benin", "BEN"),
+        ("Botswana", "BWA"),
+        ("Burkina Faso", "BFA"),
+        ("Burundi", "BDI"),
+        ("Cameroon", "CMR"),
+        ("Cape Verde", "CPV"),
+    ]
+    country = models.CharField(
+        max_length=150,
+        choices=COUNTRY_CHOICES,
+        unique=True,
+    )
+
+    def __str__(self):
+        return "{0}".format(self.country)
+
+class GeneralInfo(models.Model):
+    owner = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+        related_name="owner_general_info",
+    )
+    gender = models.ForeignKey(
+        Gender,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="gender_general_info",
+    )
+    country = models.ForeignKey(
+        Country,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="country_general_info",
+    )
+    passport_number = models.CharField(
+        max_length=30,
+        null=True,
+        blank=True,
+    )
+    date_of_birth = models.DateField(
+        help_text="Please use the following format: <em>YYYY-MM-DD</em>."
+    )
+    weight = models.FloatField(
+        null=True,
+        blank=True,
+        help_text="Please Enter your weight value",
+    )
+    name_of_emergency_contact = models.CharField(
+        max_length=300,
+        null=False,
+        blank=False,
+    )
+    relationship = models.ForeignKey(
+        Relationship,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="relationship_general_info",
+    )
+    email_of_emergency_contact = models.EmailField(
+        null=True,
+        blank=True,
+    )
+    phone_number_of_emergency_contact = models.CharField(
+        max_length=30,
+        null=True,
+        blank=True,
+        help_text="Please start your phone number with your country code first",
+    )
+    immunizations = models.ManyToManyField(
+        Immunization,
+        related_name="immunization_general_info",
+    )
+    allergies = models.ManyToManyField(
+        Allergy,
+        related_name="allergy_general_info",
+    )
+
