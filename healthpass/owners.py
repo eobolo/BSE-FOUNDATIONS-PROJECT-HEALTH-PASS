@@ -60,6 +60,7 @@ class OWNERUPDATEVIEW(LoginRequiredMixin, UpdateView):
         model_object.owner = self.request.user
         # now save the model_object temporarily and it would save permanently
         # if validation is correct
+        model_object.save()
         # return the super class form validation
         return super(OWNERUPDATEVIEW, self).form_valid(form)
 
@@ -94,6 +95,7 @@ class OWNERDELETEVIEW(LoginRequiredMixin, DeleteView):
         if self.model.__name__ == "BloodWork":
             return reverse("health:blood_work_read_delete")
         elif self.model.__name__ == "GeneralInfo":
-            pass
+            return reverse("health:general_info_read_delete")
         else:
-            pass
+            # return reverse("health:urinalysis_read_delete")
+            return reverse("health:user_home")
