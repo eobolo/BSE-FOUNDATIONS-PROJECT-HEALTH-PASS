@@ -1,5 +1,5 @@
 from .owners import OWNERCREATEVIEW, OWNERLISTVIEW, OWNERUPDATEVIEW, OWNERDELETEVIEW
-from .models import BloodWork, GeneralInfo
+from .models import BloodWork, GeneralInfo, Urinalysis
 
 # create your views
 # blood work
@@ -95,3 +95,52 @@ class GeneralInfoDeleteListView(BloodWorkDeleteListView):
 
 class GeneralInfoDeleteView(BloodWorkDeleteView):
     model = GeneralInfo
+
+# urinalysis
+class UrinalysisCreateView(GeneralInfoCreateView):
+    model = Urinalysis
+    fields = [
+        "color",
+        "appearance",
+        "glucose",
+        "bilirubin",
+        "ketone",
+        "blood",
+        "protein",
+        "nitrite",
+        "microscopic_indicated",
+        "ph",
+        "specific_gravity",
+        "urobilinogen",
+    ]
+
+class UrinalysisListView(GeneralInfoListView):
+    model = Urinalysis
+
+class UrinalysisUpdateListView(GeneralInfoUpdateListView):
+    model = Urinalysis
+    template_name = "healthpass/urinalysis_updatelist.html"
+
+class UrinalysisUpdateView(GeneralInfoUpdateView):
+    model = Urinalysis
+    fields = [
+        "color",
+        "appearance",
+        "glucose",
+        "bilirubin",
+        "ketone",
+        "blood",
+        "protein",
+        "nitrite",
+        "microscopic_indicated",
+        "ph",
+        "specific_gravity",
+        "urobilinogen",
+    ]
+
+class UrinalysisDeleteListView(GeneralInfoDeleteListView):
+    model = Urinalysis
+    template_name = "healthpass/urinalysis_deletelist.html"
+
+class UrinalysisDeleteView(GeneralInfoDeleteView):
+    model = Urinalysis

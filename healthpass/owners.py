@@ -97,5 +97,5 @@ class OWNERDELETEVIEW(LoginRequiredMixin, DeleteView):
         elif self.model.__name__ == "GeneralInfo":
             return reverse("health:general_info_read_delete")
         else:
-            # return reverse("health:urinalysis_read_delete")
-            return reverse("health:user_home")
+            return reverse("health:urinalysis_read_delete")
+            # return reverse("health:user_home")

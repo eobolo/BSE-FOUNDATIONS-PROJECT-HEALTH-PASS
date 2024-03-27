@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from datetime import datetime
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class CustomUser(AbstractUser):
@@ -439,7 +441,7 @@ class GeneralInfo(models.Model):
     weight = models.FloatField(
         null=True,
         blank=True,
-        help_text="Please Enter your weight value",
+        help_text="Please Enter your weight value in float 98.0",
     )
     name_of_emergency_contact = models.CharField(
         max_length=300,
@@ -471,3 +473,289 @@ class GeneralInfo(models.Model):
         related_name="allergy_general_info",
     )
 
+
+"""Urinalysis"""
+
+class Color(models.Model):
+    COLOR_CHOICES = [
+        ("Pale", "Pale"),
+        ("Dark Yellow", "Dark Yellow"),
+        ("Other", "Other Colors"),
+    ]
+    color = models.CharField(
+        max_length=13,
+        choices=COLOR_CHOICES,
+        null=False,
+        blank=False,
+        unique=True,
+    )
+
+    def __str__(self):
+        return "{0}".format(self.color)
+
+class Appearance(models.Model):
+    APPEARANCE_CHOICES = [
+        ("Clear", "Clear"),
+        ("Hazy", "Hazy"),
+        ("Slightly Cloudy", "Slightly Cloudy"),
+    ]
+    appearance = models.CharField(
+        max_length=20,
+        choices=APPEARANCE_CHOICES,
+        null=False,
+        blank=False,
+        unique=True,
+    )
+
+    def __str__(self):
+        return "{0}".format(self.appearance)
+
+class Glucose(models.Model):
+    GLUCOSE_CHOICES = [
+        ("Negative", "Negative"),
+        ("Positive", "Positive"),
+    ]
+    glucose = models.CharField(
+        max_length=12,
+        choices=GLUCOSE_CHOICES,
+        null=False,
+        blank=False,
+        unique=True,
+    )
+
+    def __str__(self):
+        return "{0}".format(self.glucose)
+
+class Bilirubin(models.Model):
+    BILIRUBIN_CHOICES = [
+        ("Positive", "Positive"),
+        ("Negative", "Negative"),
+    ]
+    bilirubin = models.CharField(
+        max_length=12,
+        choices=BILIRUBIN_CHOICES,
+        null=False,
+        blank=False,
+        unique=True,
+    )
+
+    def __str__(self):
+        return "{0}".format(self.bilirubin)
+
+class Ketone(models.Model):
+    KETONE_CHOICES = [
+        ("Positive", "Positive"),
+        ("Negative", "Negative"),
+    ]
+    ketone = models.CharField(
+        max_length=12,
+        choices=KETONE_CHOICES,
+        null=False,
+        blank=False,
+        unique=True,
+    )
+
+    def __str__(self):
+        return "{0}".format(self.ketone)
+
+class Blood(models.Model):
+    BLOOD_CHOICES = [
+        ("Negative", "Negative"),
+        ("Positive", "Positive"),
+    ]
+    blood = models.CharField(
+        max_length=12,
+        choices=BLOOD_CHOICES,
+        null=False,
+        blank=False,
+        unique=True,
+    )
+
+    def __str__(self):
+        return "{0}".format(self.blood)
+
+class Protein(models.Model):
+    PROTEIN_CHOICES = [
+        ("Negative", "Negative"),
+        ("Positive", "Positive"),
+    ]
+    protein = models.CharField(
+        max_length=12,
+        choices=PROTEIN_CHOICES,
+        null=False,
+        blank=False,
+        unique=True,
+    )
+
+    def __str__(self):
+        return "{0}".format(self.protein)
+
+class Nitrite(models.Model):
+    NITRITE_CHOICES = [
+        ("Positive", "Positive"),
+        ("Negative", "Negative"),
+    ]
+    nitrite = models.CharField(
+        max_length=12,
+        choices=NITRITE_CHOICES,
+        null=False,
+        blank=False,
+        unique=True,
+    )
+
+    def __str__(self):
+        return "{0}".format(self.nitrite)
+
+class MicroscopicIndicated(models.Model):
+    MICROSCOPIC_CHOICES = [
+        ("Negative", "Negative"),
+        ("Positive", "Positive"),
+    ]
+    microscopic_indicated = models.CharField(
+        max_length=12,
+        choices=MICROSCOPIC_CHOICES,
+        null=False,
+        blank=False,
+        unique=True,
+    )
+
+    def __str__(self):
+        return "{0}".format(self.microscopic_indicated)
+
+"""Write a simple validator for ph field, urobilinogen, specific gravity"""
+
+def validate_specific_gravity_field(value):
+    """
+    This is a custom validator to
+    validate the range of specific gravity
+    values shouldn't be greater than
+    1.035 or less than 1.003 if given or
+    leave the field empty.
+    """
+    max_value = 1.035
+    min_value = 1.003
+
+    if not (min_value <= value <= max_value):
+        raise ValidationError(
+            _('The value must be between %(min_value)s and %(max_value)s, or leave the field empty.'),
+            params={'min_value': min_value, 'max_value': max_value},
+        )
+
+def validate_ph_field(value):
+    """
+    This is a custom validator to validate
+    the ph field the range of this field
+    values should be between 5.0 to 8.0
+    if given or leave as empty.
+    """
+    min_value = 5.0
+    max_value = 8.0
+
+    if not (min_value <= value <= max_value):
+        raise ValidationError(
+            _('The value must be between %(min_value)s and %(max_value)s, or leave the field empty.'),
+            params={'min_value': min_value, 'max_value': max_value},
+        )
+
+def validate_urobilinogen_field(value):
+    """
+    This is a custom validator to validate
+    the urobilinogen field the range of this
+    field values should be between 0.1 to 1.0
+    if given or leave as empty.
+    """
+    min_value = 0.1
+    max_value = 1.0
+
+    if not (min_value <= value <= max_value):
+        raise ValidationError(
+            _('The value must be between %(min_value)s and %(max_value)s, or leave the field empty.'),
+            params={'min_value': min_value, 'max_value': max_value},
+        )
+
+class Urinalysis(models.Model):
+    owner = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+        related_name="owner_urinalysis",
+    )
+    color = models.ForeignKey(
+        Color,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="color_urinalysis",
+    )
+    appearance = models.ForeignKey(
+        Appearance,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="appearance_urinalysis",
+    )
+    glucose = models.ForeignKey(
+        Glucose,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="glucose_urinalysis",
+    )
+    bilirubin = models.ForeignKey(
+        Bilirubin,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="bilirubin_urinalysis",
+    )
+    ketone = models.ForeignKey(
+        Ketone,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="ketone_urinalysis",
+    )
+    blood = models.ForeignKey(
+        Blood,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="blood_urinalysis",
+    )
+    protein = models.ForeignKey(
+        Protein,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="protein_urinalysis",
+    )
+    nitrite = models.ForeignKey(
+        Nitrite,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="nitrite_urinalysis",
+    )
+    microscopic_indicated = models.ForeignKey(
+        MicroscopicIndicated,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="microscopic_indicated_urinalysis",
+    )
+    ph = models.DecimalField(
+        max_digits=2,
+        decimal_places=1,
+        null=True,
+        blank=True,
+        validators=[validate_ph_field],
+        help_text="values in 1 decimal place e.g 1.0, 2.0, 2.5, and so on.",
+    )
+    specific_gravity = models.DecimalField(
+        max_digits=4,
+        decimal_places=3,
+        null=True,
+        blank=True,
+        validators=[validate_specific_gravity_field],
+        help_text="values in 3 decimal place e.g 0.001, 2.3456, and so on.",
+    )
+    urobilinogen = models.DecimalField(
+        max_digits=2,
+        decimal_places=1,
+        null=True,
+        blank=True,
+        validators=[validate_urobilinogen_field],
+        help_text="values in 1 decimal place e.g 2.3, 4.5, and so on.",
+    )

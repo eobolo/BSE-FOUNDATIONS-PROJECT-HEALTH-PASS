@@ -26,4 +26,11 @@ urlpatterns = [
     path("general_info_update/<int:pk>/", views3.GeneralInfoUpdateView.as_view(), name="general_info_update"),
     path("general_info_read_delete/", views3.GeneralInfoDeleteListView.as_view(), name="general_info_read_delete"),
     path("general_info_delete/<int:pk>/", views3.GeneralInfoDeleteView.as_view(), name="general_info_delete"),
+    # urinalysis paths
+    path("urinalysis_create/", views3.UrinalysisCreateView.as_view(), name="urinalysis_create"),
+    path("urinalysis_read/", views3.UrinalysisListView.as_view(), name="urinalysis_read"),
+    path("urinalysis_read_update/", views3.UrinalysisUpdateListView.as_view(), name="urinalysis_read_update"),
+    path("urinalysis_update/<int:pk>/", views3.UrinalysisUpdateView.as_view(), name="urinalysis_update"),
+    path("urinalysis_read_delete/", views3.UrinalysisDeleteListView.as_view(), name="urinalysis_read_delete"),
+    path("urinalysis_delete/<int:pk>/", views3.UrinalysisDeleteView.as_view(), name="urinalysis_delete"),
 ]
