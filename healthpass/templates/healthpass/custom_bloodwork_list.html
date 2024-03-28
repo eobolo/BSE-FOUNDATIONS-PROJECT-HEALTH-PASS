@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Custom blood read</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            header {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                align-items: center;
+                background-color: beige;
+                height: 7rem;
+            }
+            .search-attr {
+                height: 2rem;
+            }
+            input {
+                height: inherit;
+                width: inherit;
+                margin: 6px;
+                padding: 2px 5px;
+                border-radius: 5px;
+                border: 0.1rem solid green;
+            }
+            .button-div {
+                width: 181.6px;
+                padding-top: 12px;
+                height: 2.5rem;
+            }
+            button {
+                height: inherit;
+                width: inherit;
+                border-radius: 5px;
+                background-color: rgb(233, 71, 53);
+                cursor: pointer;
+                color: rgb(255, 255, 255);
+            }
+            button:hover {
+                background-color: rgb(233, 71, 53, 0.5);
+                transform: scale(1.1, 1.1);
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="search-attr">
+                <input type="text" name="first_name" placeholder="search by firstname" value="">
+            </div>
+            <div class="search-attr">
+                <input type="text" name="last_name" value="" placeholder="search by lastname">
+            </div>
+            <div class="search-attr">
+                <input type="text" name="email" value="" placeholder="search by email">
+            </div>
+            <div class="button-div">
+                <button type="button">SEARCH</button>
+            </div>
+        </header>
+        <main>
+            <!--my main code to list a the found  and use paginated by dango list view thank you-->
+            {% if search_message %}
+                <div>{{ search_message }}</div>
+            {% endif %}
+            {% if bloodwork_list %}
+                <div>
+                    {% for bloodwork in bloodwork_list %}
+                        <ul>
+                            <li>
+                                <strong>First Name:</strong> {{ bloodwork.owner.first_name }}<br>
+                                <strong>Last Name:</strong> {{ bloodwork.owner.last_name }}<br>
+                                <strong>Email:</strong> {{ bloodwork.owner.email }}<br>
+                                <strong>Hb Genotype:</strong> {{ bloodwork.hb_genotype }}<br>
+                                <strong>Sickling Test:</strong> {{ bloodwork.sickling_test }}<br>
+                                <strong>Blood Group:</strong> {{ bloodwork.blood_group }}<br>
+                                <strong>Malaria Parasite:</strong> {{ bloodwork.malaria_parasite }}<br>
+                                <strong>Hepatitis A:</strong> {{ bloodwork.hepatitis_a }}<br>
+                                <strong>Hepatitis B:</strong> {{ bloodwork.hepatitis_b }}<br>
+                                <strong>HIV:</strong> {{ bloodwork.hiv }}<br>
+                                <strong>VDRL:</strong> {{ bloodwork.vdrl }}<br>
+                                <strong>H.pylori:</strong> {{ bloodwork.hpylori }}<br>
+                                <strong>Rhesus Antigen:</strong> {{ bloodwork.rhesus_antigen }}<br>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            <div>
+                <p>
+                    <a href="{% url 'health:custom_home' %}">return to home page</a>
+                </p>
+            </div>
+        </main>
+    </body>
+    <script>
+        onSearchButton = document.querySelector(".button-div");
+        onSearchButton.addEventListener("click", () => {
+            let inputElementList = document.querySelectorAll("input");
+            let urlString = "";
+            let inputCount = 0;
+            while (inputCount < inputElementList.length) {
+                if (inputCount == 0 && inputCount == inputElementList.length - 1) {
+                    urlString += '?' + `${inputElementList[inputCount].name}=${inputElementList[inputCount].value}`;
+                }
+                else if (inputCount == 0) {
+                    urlString += '?' + `${inputElementList[inputCount].name}=${inputElementList[inputCount].value}&`;
+                }
+                else if (inputCount > 0 && inputCount < inputElementList.length - 1) {
+                    urlString += `${inputElementList[inputCount].name}=${inputElementList[inputCount].value}&`;   
+                }
+                else {
+                    urlString += `${inputElementList[inputCount].name}=${inputElementList[inputCount].value}`;
+                }
+                inputCount += 1;
+            }
+            window.location = urlString;
+        });
+    </script>
+</html>

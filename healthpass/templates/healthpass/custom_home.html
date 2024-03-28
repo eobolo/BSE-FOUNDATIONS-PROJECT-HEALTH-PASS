@@ -10,6 +10,9 @@
             <nav>
                 <!-- Add the read blood, urinal analysis, and general info links here. -->
                 <p>
+                    <a href="{% url 'health:custom_blood_work_read' %}">check blood works<a>
+                </p>
+                <p>
                     <a href="{% url 'health:custom_logout' %}">Log out</a>
                 </p>
             </nav>
@@ -18,7 +21,7 @@
             {% include 'healthpass/messages.html' %}
             <div>
                 <h1>Welcome to the Custom Health Practitioner Page</h1>
-                <p>Hello, Health Practitioner</p>
+                <p>Hello, Health Practitioner, {{ custom_logged_user.first_name }} {{ custom_logged_user.last_name }}</p>
             </div>
         </main>
     </body>

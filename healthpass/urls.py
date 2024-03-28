@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from . import views2
 from . import views3
+from . import views4
 
 app_name = "healthpass"
 urlpatterns = [
@@ -33,4 +34,6 @@ urlpatterns = [
     path("urinalysis_update/<int:pk>/", views3.UrinalysisUpdateView.as_view(), name="urinalysis_update"),
     path("urinalysis_read_delete/", views3.UrinalysisDeleteListView.as_view(), name="urinalysis_read_delete"),
     path("urinalysis_delete/<int:pk>/", views3.UrinalysisDeleteView.as_view(), name="urinalysis_delete"),
+    # custom blood work read, urinalysis read, and general info read
+    path("custom_blood_work_read/", views4.CustomBloodWorkListView.as_view(), name="custom_blood_work_read"),
 ]

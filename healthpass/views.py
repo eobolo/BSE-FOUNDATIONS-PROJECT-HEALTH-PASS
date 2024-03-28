@@ -40,7 +40,10 @@ class CustomHome(View):
             If both case come out False render the custom home page
             will add some context soon.
             """
-            return render(request, self.template_name)
+            context = {}
+            custom_logged_user = request.user
+            context["custom_logged_user"] = custom_logged_user
+            return render(request, self.template_name, context)
         login_url = reverse("health:custom_login")
         return redirect(login_url)
 
