@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Confirm Blood Work Delete</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        {% if bloodwork %}
+            {% include 'healthpass/messages.html' %}
+        {% else %}
+            {% include 'healthpass/messages.html' %}
+            <div>
+                <p>
+                    <a href="{% url 'health:blood_work_read_delete' %}">back</a>
+                </p>
+            </div>
+        {% endif %}
+        {% if bloodwork %}
+            <div>
+                <h1>Delete BloodWork</h1>
+                <p>Are you sure you want to delete this bloodwork data: {{ bloodwork.id }}?</p>
+            </div>
+            <div>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <p>
+                        <label style="display: none;" for="blood_submit"></label>
+                        <input style="display: none;" id="blood_submit" type="submit" name="blood_submit" value="blood">
+                    </p>
+                    <p>
+                        <label style="display: none;" for="blood_cancel"></label>
+                        <input style="display: none;" id="blood_cancel" type="submit" onclick="window.location='{% url 'health:blood_work_read_delete' %}'; return false;" name="blood_cancel" value="no blood">
+                    </p>
+                    <p>
+                        <button id="submit_blood" type="button">Delete Blood Work</button>
+                    </p>
+                    <p>
+                        <button id="cancel_blood" type="button">Cancel Blood Work Delete</button>
+                    </p>
+                </form>
+            </div>
+        {% endif %}
+    </body>
+    <script>
+        const BloodButton = document.querySelector("#submit_blood");
+        const BloodSubmit = document.querySelector("#blood_submit");
+        const CancelButton = document.querySelector("#cancel_blood");
+        const CancelSubmit = document.querySelector("#blood_cancel");
+        BloodSubmit.addEventListener("click", () => {
+            console.log("Deleting blood work data...");
+        });
+        BloodButton.addEventListener("click", () => {
+            BloodSubmit.click();
+        });
+        CancelSubmit.addEventListener("click", () => {
+            console.log("Canceling blood work data delete...");
+        });
+        CancelButton.addEventListener("click", () => {
+            CancelSubmit.click();
+        });
+    </script>
+</html>

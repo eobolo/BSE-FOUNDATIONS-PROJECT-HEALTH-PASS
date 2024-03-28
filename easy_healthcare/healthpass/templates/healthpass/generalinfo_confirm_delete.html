@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Confirm General Info Delete</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        {% if generalinfo %}
+            {% include 'healthpass/messages.html' %}
+        {% else %}
+            {% include 'healthpass/messages.html' %}
+            <div>
+                <p>
+                    <a href="{% url 'health:general_info_read_delete' %}">back</a>
+                </p>
+            </div>
+        {% endif %}
+        {% if generalinfo %}
+            <div>
+                <h1>Delete GeneralInfo</h1>
+                <p>Are you sure you want to delete this bloodwork data: {{ generalinfo.id }}?</p>
+            </div>
+            <div>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <p>
+                        <label style="display: none;" for="info_submit"></label>
+                        <input style="display: none;" id="info_submit" type="submit" name="info_submit" value="info">
+                    </p>
+                    <p>
+                        <label style="display: none;" for="info_cancel"></label>
+                        <input style="display: none;" id="info_cancel" type="submit" onclick="window.location='{% url 'health:general_info_read_delete' %}'; return false;" name="info_cancel" value="no info">
+                    </p>
+                    <p>
+                        <button id="submit_info" type="button">Delete General Info</button>
+                    </p>
+                    <p>
+                        <button id="cancel_info" type="button">Cancel General Info Delete</button>
+                    </p>
+                </form>
+            </div>
+        {% endif %}
+    </body>
+    <script>
+        const InfoButton = document.querySelector("#submit_info");
+        const InfoSubmit = document.querySelector("#info_submit");
+        const CancelButton = document.querySelector("#cancel_info");
+        const CancelSubmit = document.querySelector("#info_cancel");
+        InfoSubmit.addEventListener("click", () => {
+            console.log("Deleting general info data...");
+        });
+        InfoButton.addEventListener("click", () => {
+            InfoSubmit.click();
+        });
+        CancelSubmit.addEventListener("click", () => {
+            console.log("Canceling general info data delete...");
+        });
+        CancelButton.addEventListener("click", () => {
+            CancelSubmit.click();
+        });
+    </script>
+</html>

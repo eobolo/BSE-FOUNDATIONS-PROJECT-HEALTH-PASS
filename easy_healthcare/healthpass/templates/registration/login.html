@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>User Secure Login</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        {% include 'healthpass/messages.html' %}
+        {% if form.errors %}
+            <div>
+                <p>An Error occurred in your form login submission :(</p>
+            </div>
+        {% endif %}
+        <div>
+            {% load crispy_forms_tags %}
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <p>
+                    <label style="display: none;" for="user_signin"></label>
+                    <input style="display: none;" id="user_signin" type="submit" name="user_signin" value="signin">
+                </p>
+                <p>
+                    <button id="signin_user" type="button">Login</button>
+                </p>
+            </form>
+        </div>
+        <div>
+            <p>No Account, Create an account here :)</p>
+        </div>
+        <div>
+            <a href="{% url 'health:user_signup' %}">Sign up</a>
+        </div>
+    </body>
+    <script>
+        const UserButton = document.querySelector("#signin_user");
+        const UserSubmit = document.querySelector("#user_signin");
+
+        UserSubmit.addEventListener("click", () => {
+            console.log("submitting custom sigup data...");
+        });
+        UserButton.addEventListener("click", () => {
+            UserSubmit.click();
+        });
+    </script>
+</html>
