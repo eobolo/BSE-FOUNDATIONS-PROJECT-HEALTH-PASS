@@ -140,7 +140,7 @@ LOGIN_REDIRECT_URL = "/healthpass/user_home/"
 LOGOUT_REDIRECT_URL = "/accounts/login/"
 
 # define your media url and root
-MEDIA_BASE_DIR = BASE_DIR.parent.parent# i.e SE_FOUNDATIONS_PROJECT
+MEDIA_BASE_DIR = BASE_DIR.parent # i.e SE_FOUNDATIONS_PROJECT
 MEDIA_ROOT = MEDIA_BASE_DIR / 'media'
 # Media URLs for different types of media
 MEDIA_URL_PHOTOS = '/media/photos/'
