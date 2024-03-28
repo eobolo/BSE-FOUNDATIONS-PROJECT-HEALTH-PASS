@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Read General Info</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        {% if generalinfo_list %}
+            {% include 'healthpass/messages.html' %}
+        {% else %}
+            {% include 'healthpass/messages.html' %}
+        {% endif %}
+        <div>
+            {% for generalinfo in generalinfo_list %}
+                <ul>
+                    <li>
+                        <strong>Gender:</strong> {{ generalinfo.gender }}<br>
+                        <strong>Country:</strong> {{ generalinfo.country }}<br>
+                        <strong>Passport Number:</strong> {{ generalinfo.passport_number }}<br>
+                        <strong>Date of Birth:</strong> {{ generalinfo.date_of_birth }}<br>
+                        <strong>Weight:</strong> {{ generalinfo.weight }}<br>
+                        <strong>Name of Emergency Contact:</strong> {{ generalinfo.name_of_emergency_contact }}<br>
+                        <strong>Relationship:</strong> {{ generalinfo.relationship }}<br>
+                        <strong>Email of Emergency Contact:</strong> {{ generalinfo.email_of_emergency_contact }}<br>
+                        <strong>Phone Number of Emergency Contact:</strong> {{ generalinfo.phone_number_of_emergency_contact }}<br>
+                        {% for immunization in generalinfo.immunizations.all %}
+                            <strong>Immunization{{ immunization.id }}:</strong> {{ immunization.immunization }}<br>
+                        {% endfor %}
+                        {% for allergy in generalinfo.allergies.all %}
+                            <strong>Allergy{{ allergy.id }}:</strong> {{ allergy.allergy }}<br>
+                        {% endfor %}
+                    </li>
+                </ul>
+            {% endfor %}
+        </div>
+        <div>
+            <p>
+                <a href="{% url 'health:user_home' %}">Home</a>
+            </p>
+        </div>
+    </body>
+    <script>
+    </script>
+</html>
