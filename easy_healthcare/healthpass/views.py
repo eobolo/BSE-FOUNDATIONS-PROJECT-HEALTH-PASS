@@ -8,11 +8,39 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.generic.list import ListView
 from .forms import CustomUserCreationForm, CustomLoginForm
 from .models import CustomUser
+from .forms3 import CustomPasswordResetForm, CustomSetPasswordForm, CustomPasswordCheck
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.utils.http import urlsafe_base64_encode
+from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
 # Create your views here.
+
+
 
 """utility functions"""
 def normalize_data(first_name="", last_name=""):
     return first_name.capitalize(), last_name.capitalize()
+
+def custom_send_password_reset_link(custom_user):
+    # Generate a password reset token
+    token_generator = PasswordResetTokenGenerator()
+    # encode the customer user primary key in base64
+    uidb64 = urlsafe_base64_encode(force_bytes(custom_user.pk))
+    # attach that token to the customer for later verification
+    token = token_generator.make_token(custom_user)
+
+    # Construct the password reset URL
+    reset_url = f'https://olugbeminiyi2000.pythonanywhere.com/healthpass/custom_reset/{uidb64}/{token}/'
+
+    # # Construct the email subject and body
+    subject = "Healthpass Custom User Password Reset"
+    message = message = render_to_string('healthpass/custom_password_reset_email.html', {'reset_url': reset_url, 'email': custom_user.email})
+
+    send_mail(subject, message, 'obolo.emmanuel31052000@gmail.com', [custom_user.email])
+
 
 class CustomHome(View):
     template_name = "healthpass/custom_home.html"
@@ -211,3 +239,134 @@ class CustomLogout(View):
         messages.success(request, "CustomUser successfully logged out :)")
         # then redirect success page i.e out custom login
         return redirect(reverse("health:custom_login"))
+
+class CustomPasswordResetWarning(View):
+    template_name = "healthpass/custom_password_reset_warning.html"
+    
+    def get(self, request):
+        context = {}
+        context["error_message"] = request.session.get("error_message", "You shouldn't be here User :|")
+        if "error_message" in request.session:
+            del request.session["error_message"]
+        return render(request, self.template_name, context)
+
+
+class CustomBan(View):
+    template_name = "healthpass/custom_ban.html"
+
+    def get(self, request):
+        context = {}
+        context["error_message"] = request.session.get("error_message", "You shouldn't be here User :|")
+        if "error_message" in request.session:
+            del request.session["error_message"]
+        return render(request, self.template_name, context)
+
+class CustomResetDone(View):
+    template_name = "healthpass/custom_reset_done.html"
+    def get(self, request):
+        return render(request, self.template_name)
+
+class CustomReset(View):
+    template_name = "healthpass/custom_reset_confirm_form.html"
+
+    def get(self, request, uidb64, token):
+        custom_password_check_form = CustomPasswordCheck()
+
+        # create context
+        context = {}
+        context["custom_password_check_form"] = custom_password_check_form
+
+        # return render
+        return render(request, self.template_name, context)
+
+    def post(self, request, uidb64, token):
+        # check if this was just a made up uidb64 not linked to a user
+        # so decode uidb64 and extract the primarykey
+        try:
+            uid = urlsafe_base64_decode(uidb64).decode()
+            custom_user = CustomUser.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
+            custom_user = None
+
+        # check if user is not None and we also have to check if the token we got
+        # attached user is the same with the user we got from the uid extraction
+        if custom_user is not None and default_token_generator.check_token(custom_user, token):
+            # check for form validation i.e if passwords match
+            # but also but the custom user so we can save the new reset password
+            # if the form is valid.
+            custom_set_password_form = CustomSetPasswordForm(custom_user, request.POST)
+
+            if not custom_set_password_form.is_valid():
+                # create context
+                context = {}
+                context["custom_password_check_form"] = CustomPasswordCheck()
+                context["custom_set_password_form"] = custom_set_password_form
+                
+                # return render
+                return render(request, self.template_name, context)
+
+            # save the new reset password 
+            custom_set_password_form.save()
+            
+            # return redirect
+            return redirect(reverse("health:custom_reset_done"))
+        else:
+            request.session["error_message"] = "You have no right to reset anything, be warned!!!"
+            warning_page_url = reverse("health:custom_password_reset_warning")
+            return warning_page_url
+
+class CustomPasswordResetDone(View):
+    template_name = "healthpass/custom_password_reset_done.html"
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+class CustomPasswordReset(View):
+    template_name = "healthpass/custom_password_reset_form.html"
+    
+    def get(self, request):
+        custom_password_reset_form = CustomPasswordResetForm()
+        # create context
+        context = {}
+        context["custom_password_reset_form"] = custom_password_reset_form
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        # check if the form is valid in terms of email validation
+        # create a context first
+        context = {}
+        custom_password_reset_form = CustomPasswordResetForm(request.POST)
+        if not custom_password_reset_form.is_valid():
+            context["custom_password_reset_form"] = custom_password_reset_form
+            return render(request, self.template_name, context)
+
+        # now check for the three cases needed to send reset pasword link to mail
+        # 1. check if the email provided exists
+        post_request_copy = request.POST.copy()
+        get_email_address = post_request_copy.get("email")
+        check_email_address_exists = CustomUser.objects.filter(
+            email=get_email_address,
+        ).exists()
+        if not check_email_address_exists:
+            request.session["error_message"] = f"The user with email address {get_email_address} doesn't exist."
+            warning_page_url = reverse("health:custom_password_reset_warning")
+            return redirect(warning_page_url)
+
+        # 2. check if user is still active maybe they have been kicked from the system
+        check_user_still_active = CustomUser.objects.filter(
+            email=get_email_address,
+        ).first()
+        if not check_user_still_active.is_active:
+            request.session["error_message"] = f"The user with email address {get_email_address} has been blocked"
+            ban_page_url = reverse("health:custom_ban")
+            return redirect(ban_page_url)
+
+        # 3. check if user has usable password
+        if not check_user_still_active.has_usable_password():
+             request.session["error_message"] = f"The user with email address {get_email_address} has no password"
+             warning_page_url = reverse("health:custom_password_reset_warning")
+             return redirect(warning_page_url)
+
+        # if case are justified time to send password reset link to user email
+        custom_send_password_reset_link(check_user_still_active)
+        return redirect(reverse("health:custom_password_reset_done"))

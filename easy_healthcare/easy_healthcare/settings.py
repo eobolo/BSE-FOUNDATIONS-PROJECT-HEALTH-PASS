@@ -151,3 +151,10 @@ MEDIA_URL_AUDIO = '/media/audio/'
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'healthpass', 'static'),
 ]
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'obolo.emmanuel31052000@gmail.com'
+EMAIL_HOST_PASSWORD = 'bejk inpi rhdl vonp'
+EMAIL_PORT = 587

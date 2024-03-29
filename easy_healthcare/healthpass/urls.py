@@ -13,6 +13,13 @@ urlpatterns = [
     path("custom_login/", views.CustomLogin.as_view(template_name="healthpass/custom_login.html"), name="custom_login"),
     path("custom_home/", views.CustomHome.as_view(), name="custom_home"),
     path("custom_logout/", views.CustomLogout.as_view(), name="custom_logout"),
+    path("custom_ban/", views.CustomBan.as_view(), name="custom_ban"),
+    path("custom_password_reset/", views.CustomPasswordReset.as_view(), name="custom_password_reset"),
+    path("custom_password_reset_done/", views.CustomPasswordResetDone.as_view(), name="custom_password_reset_done"),
+    path("custom_reset/<str:uidb64>/<str:token>/", views.CustomReset.as_view(), name="custom_reset"),
+    path("custom_reset_done/", views.CustomResetDone.as_view(), name="custom_reset_done"),
+    path("custom_password_reset_warning/", views.CustomPasswordResetWarning.as_view(), name="custom_password_reset_warning"),
+
     # blood work paths
     path("blood_work_create/", views3.BloodWorkCreateView.as_view(), name="blood_work_create"),
     path("blood_work_read/", views3.BloodWorkListView.as_view(), name="blood_work_read"),
@@ -36,4 +43,6 @@ urlpatterns = [
     path("urinalysis_delete/<int:pk>/", views3.UrinalysisDeleteView.as_view(), name="urinalysis_delete"),
     # custom blood work read, urinalysis read, and general info read
     path("custom_blood_work_read/", views4.CustomBloodWorkListView.as_view(), name="custom_blood_work_read"),
+    path("custom_general_info_read/", views4.CustomGeneralInfoListView.as_view(), name="custom_general_info_read"),
+    path("custom_urinalysis_read/", views4.CustomUrinalysisListView.as_view(), name="custom_urinalysis_read"),
 ]

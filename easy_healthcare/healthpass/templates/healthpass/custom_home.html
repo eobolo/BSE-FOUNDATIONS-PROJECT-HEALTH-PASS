@@ -4,6 +4,15 @@
         <title>Health Practitioner Page</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            nav {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                height: inherit;
+                width: inherit;
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -11,6 +20,12 @@
                 <!-- Add the read blood, urinal analysis, and general info links here. -->
                 <p>
                     <a href="{% url 'health:custom_blood_work_read' %}">check blood works<a>
+                </p>
+                <p>
+                    <a href="{% url 'health:custom_general_info_read' %}">check general infos<a>
+                </p>
+                <p>
+                    <a href="{% url 'health:custom_urinalysis_read' %}">check urinalysis</a>
                 </p>
                 <p>
                     <a href="{% url 'health:custom_logout' %}">Log out</a>
