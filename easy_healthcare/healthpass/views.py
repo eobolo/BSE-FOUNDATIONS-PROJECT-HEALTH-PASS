@@ -313,7 +313,7 @@ class CustomReset(View):
         else:
             request.session["error_message"] = "You have no right to reset anything, be warned!!!"
             warning_page_url = reverse("health:custom_password_reset_warning")
-            return warning_page_url
+            return redirect(warning_page_url)
 
 class CustomPasswordResetDone(View):
     template_name = "healthpass/custom_password_reset_done.html"
