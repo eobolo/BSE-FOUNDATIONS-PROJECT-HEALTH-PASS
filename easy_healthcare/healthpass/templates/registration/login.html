@@ -27,10 +27,15 @@
             </form>
         </div>
         <div>
-            <p>No Account, Create an account here :)</p>
+            <div>
+                <p>No Account, Create an account here :)</p>
+            </div>
+            <div>
+                <a href="{% url 'health:user_signup' %}">Sign up</a>
+            </div>
         </div>
         <div>
-            <a href="{% url 'health:user_signup' %}">Sign up</a>
+            <a href="{% url 'password_reset' %}">forgot password</a>
         </div>
     </body>
     <script>
