@@ -3,11 +3,15 @@
 window.addEventListener('load', function() {
 
     const logo = document.getElementById('loading-logo');
+    const logo1 = document.getElementById('loading-logo2')
+
+    var loadingScreen1 = document.getElementById('loading1');
+    loadingScreen1.style.display = 'none';
 
 
     // Fading in of the logo
     setTimeout(() => {
-        logo.style.opacity = 1; // the logo is now fully faded in
+        logo.style.opacity = 1;
     }, 500); 
 
 
@@ -27,11 +31,20 @@ window.addEventListener('load', function() {
         const loadingScreen = document.getElementById('loading');
         loadingScreen.style.display = 'none';
 
+        loadingScreen1 = document.getElementById('loading1')
+        loadingScreen1.style.display = "block"
+        
+    
+    
 
         // Opening the sign up or sign in page
-        window.location.href = 'login.html';
+        setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 2000);
 
     }, 5600);
+
+    
 });
 
 
