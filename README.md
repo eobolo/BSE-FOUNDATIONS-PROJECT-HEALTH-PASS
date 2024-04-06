@@ -30,7 +30,6 @@ pip is a package manager for Python and is included by default with the Python i
 ## Create a Folder called SE_FOUNDATIONS_PROJECT
 ```
 mkdir SE_FOUNDATIONS_PROJECT
-cd SE_FOUNDATIONS_PROJECT
 ```
 ## Setting up a virtual environment
 
@@ -67,6 +66,10 @@ After the installation has completed, you can verify your Django installation by
 ```
 django-admin --version
 ```
+## change directory to SE_FOUNDATIONS_PROJECT
+```
+cd SE_FOUNDATIONS_PROJECT
+```
 ## clone git hub repo
 ```
 git clone https://github.com/eobolo/BSE-FOUNDATIONS-PROJECT-HEALTH-PASS.git
@@ -78,6 +81,7 @@ cd BSE-FOUNDATIONS-PROJECT-HEALTH-PASS
 ## install the dependencies
 ```
 pip install -r requirements.txt
+```
 ## change directory to easy_healthcare
 ```
 cd easy_healthcare
