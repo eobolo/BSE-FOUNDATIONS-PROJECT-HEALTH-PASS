@@ -117,8 +117,10 @@ Abiodun put images for this step please
 For healtpass/ application
 all paths with this <type:parameter> can not be accessed directly from
 the web browser but the html files beside it are connected to them
-check the files and just style them
-**C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\healthpass**
+check the files and just style them here it this path
+```
+cd SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\healthpass
+```
 
 1. user_signup - django_user.html
 2. user_home - user_home.html
@@ -159,8 +161,9 @@ all paths with this <type:parameter> can not be accessed directly from
 the web browser but the html files beside it are connected to them
 check the files and just style them
 this is the path:
-**C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\registration**
-
+```
+cd SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\registration
+```
 1. login - login.html
 2. logout - no html
 3. password_reset - password_reset_form.html
@@ -199,9 +202,13 @@ put images files in images folder
 cd images
 ```
 then move to the folder of the html files you are working on
-**C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\healthpass**
+```
+cd SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\healthpass
+```
 or
-**C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\registration**
+```
+cd SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\registration
+```
 In your file put this in the head tag of your html as the first thing before title, meta tags
 ```
 {% load static %}
@@ -217,7 +224,9 @@ before calling the style sheet in the link tag, the js in the script tag, and im
 <img src="{% static './images/yourimagefile.[jpeg,jpg,png]' %}">
 ```
 **then go back to this on cmd not powershell, use cmd on vscode to be running this commands below**
-**C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare**
+```
+cd SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare
+```
 the run this commands
 ```
 python manage.py check
