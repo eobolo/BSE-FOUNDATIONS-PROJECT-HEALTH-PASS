@@ -114,11 +114,11 @@ path function e.g user_signup
 
 Abiodun put images for this step please
 
-## For healtpass/ application
-## all paths with this <type:parameter> can not be accessed directly from
-## the web browser but the html files beside it are connected to them
-## check the files and just style them
-## C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\healthpass
+For healtpass/ application
+all paths with this <type:parameter> can not be accessed directly from
+the web browser but the html files beside it are connected to them
+check the files and just style them
+C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\healthpass
 
 1. user_signup - django_user.html
 2. user_home - user_home.html
@@ -154,12 +154,12 @@ Abiodun put images for this step please
 32. custom_general_info_read - custom_generalinfo_list.html 
 33. custom_urinalysis_read - custom_urinalysis_list.html
 
-# For accounts/ application
-## all paths with this <type:parameter> can not be accessed directly from
-## the web browser but the html files beside it are connected to them
-## check the files and just style them
-## this is the path
-## C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\registration
+For accounts/ application
+all paths with this <type:parameter> can not be accessed directly from
+the web browser but the html files beside it are connected to them
+check the files and just style them
+this is the path:
+C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\registration
 
 1. login - login.html
 2. logout - no html
