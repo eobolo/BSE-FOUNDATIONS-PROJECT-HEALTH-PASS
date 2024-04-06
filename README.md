@@ -118,7 +118,7 @@ For healtpass/ application
 all paths with this <type:parameter> can not be accessed directly from
 the web browser but the html files beside it are connected to them
 check the files and just style them
-C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\healthpass
+**C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\healthpass**
 
 1. user_signup - django_user.html
 2. user_home - user_home.html
@@ -159,11 +159,71 @@ all paths with this <type:parameter> can not be accessed directly from
 the web browser but the html files beside it are connected to them
 check the files and just style them
 this is the path:
-C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\registration
+**C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\registration**
 
 1. login - login.html
 2. logout - no html
 3. password_reset - password_reset_form.html
 4. password_reset/done - password_reset_done.html
-5. reset/<uidb64>/<token> - password_reset_confirm.html
-6. reset/done - password_reset_complete.html 
+5. reset/<str:uidb64>/<str:token> - password_reset_confirm.html
+6. reset/done - password_reset_complete.html
+
+# Working with the html file, css file and js file
+navigate to this directory
+```
+cd SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass
+```
+list directories and you would see files and folders
+```
+ls
+```
+then would see static folder, then change directory to it
+```
+cd static
+```
+then inside of static list directories
+```
+ls
+```
+then you would see styles, scripts, and images folder
+put css file in styles folder
+```
+cd styles
+```
+put javascript files in scripts folder
+```
+cd scripts
+```
+put images files in images folder
+```
+cd images
+```
+then move to the folder of the html files you are working on
+**C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\healthpass**
+or
+**C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare\healthpass\templates\registration**
+In your file put this in the head tag of your html as the first thing before title, meta tags
+```
+{% load static %}
+```
+before calling the style sheet in the link tag, the js in the script tag, and images in the image tag
+```
+<link rel="stylesheet" href="{% static './styles/yourcssscript.css' %}">
+```
+```
+<script src="{% static './scripts/yourjsscript.js' %}"></script>
+```
+```
+<img src="{% static './images/yourimagefile.[jpeg,jpg,png]' %}">
+```
+**then go back to this on cmd not powershell, use cmd on vscode to be running this commands below**
+**C:\Users\yourusername\SE_FOUNDATIONS_PROJECT\BSE-FOUNDATIONS-PROJECT-HEALTH-PASS\easy_healthcare**
+the run this commands
+```
+python manage.py check
+```
+```
+python manage.py runserver
+```
+then go back to the top of the readme to see what i said you should do after running this commands
+**Use vscode powershell to actually edit the scripts i.e css, js, and html**
