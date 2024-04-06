@@ -39,7 +39,7 @@ window.addEventListener('load', function() {
 
         // Opening the sign up or sign in page
         setTimeout(() => {
-            window.location.href = 'login.html';
+            window.location.href = '/healthpass/user_signup';
         }, 2000);
 
     }, 5600);
