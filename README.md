@@ -104,15 +104,21 @@ after the link these paths are the first argument of the
 path function e.g user_signup
 
 ## Open vscode
-1. click on new terminal
-2. you would see the powershell terminal by default
-3. then click on a '+' icon with down arrow
-4. then click on command prompt to create a new terminal with
-5. now you have powershell terminal and then command prompt terminal
-6. use powershell to do linux commands and vscode
-7. then use command prompt to do python manage.py check and python manage.py server
+1. Click on New Terminal from the VS Code hamburger menu.
+![alt text](<New Terminal.jpg>)
 
-Abiodun put images for this step please
+
+2. You will see the Powershell terminal by default.
+![alt text](PWRSHLdefault.jpg)
+
+
+3. Click on the down arrow with the '+' icon and click on Command Prompt to create a new CMD terminal.
+![alt text](CMD.jpg)
+
+
+5. Now you have Powershell terminal and then Command Prompt terminal
+
+6. Use the powershell terminal for linux commands and use Command Prompt to run "python manage.py check" and "python manage.py runserver"
 
 For healtpass/ application
 all paths with this <type:parameter> can not be accessed directly from
