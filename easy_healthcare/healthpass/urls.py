@@ -9,6 +9,7 @@ urlpatterns = [
     # authentication paths
     path("user_signup/", views2.UserSignUp.as_view(), name="user_signup"),
     path("user_home/", views2.UserHome.as_view(), name="user_home"),
+    path("user_logout/", views2.UserLogOut.as_view(), name="user_logout"),
     path("custom_signup/", views.CustomSignUp.as_view(), name="custom_signup"),
     path("custom_login/", views.CustomLogin.as_view(template_name="healthpass/custom_login.html"), name="custom_login"),
     path("custom_home/", views.CustomHome.as_view(), name="custom_home"),

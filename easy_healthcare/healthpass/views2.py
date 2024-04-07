@@ -13,6 +13,11 @@ from .forms2 import DjangoUserCreationForm
 def normalize_data(first_name="", last_name=""):
     return first_name.capitalize(), last_name.capitalize()
 
+class UserLogOut(View):
+    template_name = "healthpass/logged_out.html"
+    def get(self, request):
+        return render(request, self.template_name)
+    
 class UserHome(View):
     template_name = "healthpass/user_home.html"
     def get(self, request):
