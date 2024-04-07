@@ -37,10 +37,10 @@ window.addEventListener('load', function() {
     
     
 
-        // // Opening the sign up or sign in page
-        // setTimeout(() => {
-        //     window.location.href = '/accounts/login';
-        // // }, 2000);
+        // Opening the sign up or sign in page
+        setTimeout(() => {
+            window.location.href = '/accounts/login';
+        }, 2000);
 
     }, 5600);
 
