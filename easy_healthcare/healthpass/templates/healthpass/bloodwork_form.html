@@ -1,55 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Create or Update Blood Work</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
+
+<head>
+    <title>Create or Update Blood Work</title>
+    <meta charset="utf-8">
+    {% load static %}
+    {% load widget_tweaks %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="bg-white text-gray-700 font-sans leading-normal tracking-normal">
+
+    <div class="container mx-auto p-8">
         {% if form.errors %}
-            <div>
-                <p>An Error occured when validating form :(</p>
-            </div>
+        <div class="bg-red-600 text-white px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">An Error occurred when validating the form :(</strong>
+        </div>
         {% endif %}
         {% include 'healthpass/messages.html' %}
-        <div>
+        <div class="w-full max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
             {% load crispy_forms_tags %}
-            <form method="post" action="" enctype="multipart/form-data">
+            <form method="post" action="" enctype="multipart/form-data" class="flex flex-col space-y-6">
                 {% csrf_token %}
-                {{ form|crispy }}
-                <p>
-                    <label style="display: none;" for="blood_submit"></label>
-                    <input style="display: none;" id="blood_submit" type="submit" name="blood_submit" value="blood">
-                </p>
-                <p>
-                    <label style="display: none;" for="blood_cancel"></label>
-                    <input style="display: none;" id="blood_cancel" type="submit" onclick="window.location='{% url 'health:user_home' %}'; return false;" name="blood_cancel" value="no blood">
-                </p>
-                <p>
-                    <button id="submit_blood" type="button">Submit Blood Work</button>
-                </p>
-                <p>
-                    <button id="cancel_blood" type="button">Cancel Blood Work</button>
-                </p>
+                {% for field in form %}
+                <div class="flex flex-col space-y-2">
+                    <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
+                    {% if 'file' in field.label %}
+                    {{ field|add_class:"w-full p-3 border rounded-lg text-gray-700 bg-white border-gray-300 focus:border-blue-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"}}
+                    {% else %}
+                    {{ field|add_class:"w-full p-3 border rounded-lg text-gray-700 bg-white border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500" }}
+                    {% endif %}
+                    {% if field.help_text %}
+                    <p class="text-xs text-gray-500">{{ field.help_text }}</p>
+                    {% endif %}
+                    {% for error in field.errors %}
+                    <p class="text-xs text-red-500">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                <!-- <div class="mb-4">
+                    <label for="blood_submit" class="sr-only">Submit</label>
+                    <input id="blood_submit" type="submit" name="blood_submit" value="blood" class="hidden">
+                </div>
+                <div class="mb-4">
+                    <label for="blood_cancel" class="sr-only">Cancel</label>
+                    <input id="blood_cancel" type="submit"
+                        onclick="window.location='{% url 'health:user_home' %}'; return false;" name="blood_cancel"
+                        value="no blood" class="hidden">
+                </div> -->
+                <div class="flex flex-col space-y-4">
+                    <button id="submit_blood" type="submit" name="blood_submit" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2">
+                        Submit Blood Work
+                    </button>
+                    <button id="cancel_blood" type="button" onclick="window.location='{% url 'health:user_home' %}'; return false;" class="w-full border border-red-500 bg-white hover:bg-gray-100 text-red-600 font-bold py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                        Cancel Blood Work
+                    </button>
+                </div>
+                
+                
             </form>
         </div>
-    </body>
-    <script>
-        const BloodButton = document.querySelector("#submit_blood");
-        const BloodSubmit = document.querySelector("#blood_submit");
-        const CancelButton = document.querySelector("#cancel_blood");
-        const CancelSubmit = document.querySelector("#blood_cancel");
-        BloodSubmit.addEventListener("click", () => {
-            console.log("submitting blood work data...");
-        });
-        BloodButton.addEventListener("click", () => {
-            BloodSubmit.click();
-        });
-        CancelSubmit.addEventListener("click", () => {
-            console.log("Canceling blood work data...");
-        });
-        CancelButton.addEventListener("click", () => {
-            CancelSubmit.click();
-        });
-    </script>
+    </div>
+</body>
+<script>
+    const BloodButton = document.querySelector("#submit_blood");
+    const BloodSubmit = document.querySelector("#blood_submit");
+    const CancelButton = document.querySelector("#cancel_blood");
+    const CancelSubmit = document.querySelector("#blood_cancel");
+    BloodSubmit.addEventListener("click", () => {
+        console.log("submitting blood work data...");
+    });
+    BloodButton.addEventListener("click", () => {
+        BloodSubmit.click();
+    });
+    CancelSubmit.addEventListener("click", () => {
+        console.log("Canceling blood work data...");
+    });
+    CancelButton.addEventListener("click", () => {
+        CancelSubmit.click();
+    });
+</script>
+
 </html>
