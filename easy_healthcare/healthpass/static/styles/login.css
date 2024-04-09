@@ -97,9 +97,10 @@ body {
 /* Style for the button group container */
 .btn-group {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content:left;
     align-items: center;
-    margin-top: 20px;
+    margin-bottom: 170px;
 }
 
 .btn-p {
@@ -110,7 +111,6 @@ body {
 .btn-p-span {
     font-size: 20px;
     cursor: pointer;
-
 }
 .btn-group a {
     color: #007bff;
@@ -137,6 +137,7 @@ body {
     text-decoration: none;
     font-size: 20px;
     cursor: pointer;
+    margin-left: 30px;
 }
 /* 
 .forgot.password a:hover {
