@@ -1,55 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Create or Update General Info</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        {% if form.errors %}
-            <div>
-                <p>An Error occured when validating form :(</p>
+
+<head>
+    <title>Create or Update General Info</title>
+    <meta charset="utf-8">
+    {% load static %}
+    {% load widget_tweaks %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="bg-white text-gray-700 font-sans leading-normal tracking-normal">
+    {% if form.errors %}
+    <div class="bg-red-600 text-white px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">An Error occurred when validating the form :(</strong>
+    </div>
+    {% endif %}
+    {% include 'healthpass/messages.html' %}
+    <div class="w-full max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
+        {% load crispy_forms_tags %}
+        <form method="post" action="" enctype="multipart/form-data" class="flex flex-col space-y-6">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="flex flex-col space-y-2">
+                <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ field.label }}</label>                
+                {{ field|add_class:"w-full p-3 border rounded-lg text-gray-700 bg-white border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500" }}
+                {% if field.help_text %}
+                <p class="text-xs text-gray-500">{{ field.help_text | safe }}</p>
+                {% endif %}
+                {% for error in field.errors %}
+                <p class="text-xs text-red-500">{{ error }}</p>
+                {% endfor %}
             </div>
-        {% endif %}
-        {% include 'healthpass/messages.html' %}
-        <div>
-            {% load crispy_forms_tags %}
-            <form method="post" action="" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <p>
-                    <label style="display: none;" for="info_submit"></label>
-                    <input style="display: none;" id="info_submit" type="submit" name="info_submit" value="info">
-                </p>
-                <p>
-                    <label style="display: none;" for="info_cancel"></label>
-                    <input style="display: none;" id="info_cancel" type="submit" onclick="window.location='{% url 'health:user_home' %}'; return false;" name="info_cancel" value="no info">
-                </p>
-                <p>
-                    <button id="submit_info" type="button">Submit General Info</button>
-                </p>
-                <p>
-                    <button id="cancel_info" type="button">Cancel General Info</button>
-                </p>
-            </form>
-        </div>
-    </body>
-    <script>
-        const InfoButton = document.querySelector("#submit_info");
-        const InfoSubmit = document.querySelector("#info_submit");
-        const CancelButton = document.querySelector("#cancel_info");
-        const CancelSubmit = document.querySelector("#info_cancel");
-        InfoSubmit.addEventListener("click", () => {
-            console.log("submitting general info data...");
-        });
-        InfoButton.addEventListener("click", () => {
-            InfoSubmit.click();
-        });
-        CancelSubmit.addEventListener("click", () => {
-            console.log("Canceling general info data...");
-        });
-        CancelButton.addEventListener("click", () => {
-            CancelSubmit.click();
-        });
-    </script>
+            {% endfor %}
+            <p> 
+                <label style="display: none;" for="info_submit"></label>
+                <input style="display: none;" id="info_submit" type="submit" name="info_submit" value="info">
+            </p>
+            <p>
+                <label style="display: none;" for="info_cancel"></label>
+                <input style="display: none;" id="info_cancel" type="submit"
+                    onclick="window.location='{% url 'health:user_home' %}'; return false;" name="info_cancel" value="no info">
+            </p>
+            <div class="flex flex-col space-y-4">
+
+                <button id="submit_info" type="button" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2">Submit General Info</button>
+
+
+                <button id="cancel_info" type="button" onclick="window.location='{% url 'health:user_home' %}'; return false;" class="w-full border border-red-500 bg-white hover:bg-gray-100 text-red-600 font-bold py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">Cancel General Info</button>
+
+            </div>
+
+        </form>
+    </div>
+</body>
+<script>
+    const InfoButton = document.querySelector("#submit_info");
+    const InfoSubmit = document.querySelector("#info_submit");
+    const CancelButton = document.querySelector("#cancel_info");
+    const CancelSubmit = document.querySelector("#info_cancel");
+    InfoSubmit.addEventListener("click", () => {
+        console.log("submitting general info data...");
+    });
+    InfoButton.addEventListener("click", () => {
+        InfoSubmit.click();
+    });
+    CancelSubmit.addEventListener("click", () => {
+        console.log("Canceling general info data...");
+    });
+    CancelButton.addEventListener("click", () => {
+        CancelSubmit.click();
+    });
+</script>
+
 </html>
