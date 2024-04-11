@@ -33,6 +33,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .inputBox {
@@ -98,6 +100,12 @@ body {
     border: 1px solid #00dfc4;
 }
 
+.button-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .button-div button {
     background: #00dfc4;
     border: 4px solid #00dfc4;
@@ -135,6 +143,32 @@ main{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 
+.contentBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.orderedList{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    width: 300px;
+    border-radius: 12px;
+    height: max-content;
+    border: 1.35px solid #00dfc4;
+
+}
+
+@media screen and (max-width: 109px) {
+    body {
+        width: 250px;
+    }
+}

@@ -1,110 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {% load static %}
-        <title>Custom Urinalysis Read</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{% static './styles/custom_urinalysis_list.css' %}">
-    </head>
-    <body>
-        <div class="topText">
-            <p>Enter details to search through the <strong>HealthPass™</strong> repository.</p>
+
+<head>
+    {% load static %}
+    <title>Custom Urinalysis Read</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static './styles/custom_urinalysis_list.css' %}">
+</head>
+
+<body>
+    <div class="topText">
+        <p>Enter details to search through the <strong>HealthPass™</strong> repository.</p>
+    </div>
+    <div class="inputContainer">
+        <div class="inputBox">
+            <input type="text" name="first_name" required>
+            <span>First Name</span>
         </div>
-        <div class="inputContainer">
-            <div class="inputBox">
-                <input type="text" name="first_name" required>
-                <span>First Name</span>
-            </div>
-            <div class="inputBox">
-                <input type="text" name="last_name" required>
-                <span>Last Name</span>
-            </div>
-            <div class="inputBox">
-                <input type="text" name="email" required>
-                <span>Email</span>
-            </div>
+        <div class="inputBox">
+            <input type="text" name="last_name" required>
+            <span>Last Name</span>
         </div>
-            <div class="button-div">
-                <button type="button">SEARCH</button>
-            </div>
+        <div class="inputBox">
+            <input type="text" name="email" required>
+            <span>Email</span>
         </div>
-        <main>
-            <!--my main code to list all the found and use paginated by dango list view thank you-->
-            {% if search_message %}
-                <div class="errorMessage">{{ search_message }}</div>
-            {% endif %}
-            {% if urinalysis_list %}
-                <div>
-                    {% for urinalysis in urinalysis_list %}
-                        <ul>
-                            <li>
-                                <strong>First Name:</strong> {{ urinalysis.owner.first_name }}<br>
-                                <strong>Last Name:</strong> {{ urinalysis.owner.last_name }}<br>
-                                <strong>Email:</strong> {{ urinalysis.owner.email }}<br>
-                                <strong>Color:</strong> {{ urinalysis.color }}<br>
-                                <strong>Appearance:</strong> {{ urinalysis.appearance }}<br>
-                                <strong>Glucose:</strong> {{ urinalysis.glucose }}<br>
-                                <strong>Bilirubin:</strong> {{ urinalysis.bilirubin }}<br>
-                                <strong>Ketone:</strong> {{ urinalysis.ketone }}<br>
-                                <strong>Blood:</strong> {{ urinalysis.blood }}<br>
-                                <strong>Protein:</strong> {{ urinalysis.protein }}<br>
-                                <strong>Nitrite:</strong> {{ urinalysis.nitrite }}<br>
-                                <strong>Microscopic Indicated:</strong> {{ urinalysis.microscopic_indicated }}<br>
-                                <strong>PH Scale:</strong> {{ urinalysis.ph }}<br>
-                                <strong>Specific Gravity:</strong> {{ urinalysis.specific_gravity }}<br>
-                                <strong>Urobilinogen:</strong> {{ urinalysis.urobilinogen }}<br>
-                            </li>
-                        </ul>
-                    {% endfor %}
-                </div>
-            {% endif %}
-            <div class="homePagination">
-                <div class="homepage" style="display: inherit !important;">
-                    <p>
-                        <a href="{% url 'health:custom_home' %}">Return to homepage</a>
-                    </p>
-                </div>
-                <div class="pagination" style="display: inherit !important;">
-                    <span class="step-links">
-                        {% if page_obj.has_previous %}
-                            <a href="?page=1">&laquo; first</a>
-                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-                        {% endif %}
-                        <span class="current">
-                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                        </span>
-                        {% if page_obj.has_next %}
-                            <a href="?page={{ page_obj.next_page_number }}">next</a>
-                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-                        {% endif %}
+    </div>
+    <div class="button-div">
+        <button type="button">SEARCH</button>
+    </div>
+    </div>
+    <main>
+        <!--my main code to list all the found and use paginated by django list view thank you-->
+        {% if search_message %}
+        <div class="errorMessage">{{ search_message }}</div>
+        {% endif %}
+        {% if urinalysis_list %}
+        <div class="contentBox">
+            {% for urinalysis in urinalysis_list %}
+            <div class="orderedList">
+                <p><strong>First Name:</strong> {{ urinalysis.owner.first_name }}</p>
+                <p><strong>Last Name:</strong> {{ urinalysis.owner.last_name }}</p>
+                <p><strong>Email:</strong> {{ urinalysis.owner.email }}</p>
+                <p><strong>Color:</strong> {{ urinalysis.color }}</p>
+                <p><strong>Appearance:</strong> {{ urinalysis.appearance }}</p>
+                <p><strong>Glucose:</strong> {{ urinalysis.glucose }}</p>
+                <p><strong>Bilirubin:</strong> {{ urinalysis.bilirubin }}</p>
+                <p><strong>Ketone:</strong> {{ urinalysis.ketone }}</p>
+                <p><strong>Blood:</strong> {{ urinalysis.blood }}</p>
+                <p><strong>Protein:</strong> {{ urinalysis.protein }}</p>
+                <p><strong>Nitrite:</strong> {{ urinalysis.nitrite }}</p>
+                <p><strong>Microscopic Indicated:</strong> {{ urinalysis.microscopic_indicated }}</p>
+                <p><strong>PH Scale:</strong> {{ urinalysis.ph }}</p>
+                <p><strong>Specific Gravity:</strong> {{ urinalysis.specific_gravity }}</p>
+                <p><strong>Urobilinogen:</strong> {{ urinalysis.urobilinogen }}</p>
+            </div>            
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="homePagination">
+            <div class="homepage" style="display: inherit !important;">
+                <p>
+                    <a href="{% url 'health:custom_home' %}">Return to homepage</a>
+                </p>
+            </div>
+            <div class="pagination" style="display: inherit !important;">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
                     </span>
-                </div>
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
             </div>
-        </main>
-    </body>
-    <script>
-        onSearchButton = document.querySelector(".button-div");
-        onSearchButton.addEventListener("click", () => {
-            let inputElementList = document.querySelectorAll("input");
-            let urlString = "";
-            let inputCount = 0;
-            while (inputCount < inputElementList.length) {
-                if (inputCount == 0 && inputCount == inputElementList.length - 1) {
-                    urlString += '?' + `${inputElementList[inputCount].name}=${inputElementList[inputCount].value}`;
-                }
-                else if (inputCount == 0) {
-                    urlString += '?' + `${inputElementList[inputCount].name}=${inputElementList[inputCount].value}&`;
-                }
-                else if (inputCount > 0 && inputCount < inputElementList.length - 1) {
-                    urlString += `${inputElementList[inputCount].name}=${inputElementList[inputCount].value}&`;   
-                }
-                else {
-                    urlString += `${inputElementList[inputCount].name}=${inputElementList[inputCount].value}`;
-                }
-                inputCount += 1;
+        </div>
+    </main>
+</body>
+<script>
+    onSearchButton = document.querySelector(".button-div");
+    onSearchButton.addEventListener("click", () => {
+        let inputElementList = document.querySelectorAll("input");
+        let urlString = "";
+        let inputCount = 0;
+        while (inputCount < inputElementList.length) {
+            if (inputCount == 0 && inputCount == inputElementList.length - 1) {
+                urlString += '?' + `${inputElementList[inputCount].name}=${inputElementList[inputCount].value}`;
             }
-            window.location = urlString;
-        });
-    </script>
+            else if (inputCount == 0) {
+                urlString += '?' + `${inputElementList[inputCount].name}=${inputElementList[inputCount].value}&`;
+            }
+            else if (inputCount > 0 && inputCount < inputElementList.length - 1) {
+                urlString += `${inputElementList[inputCount].name}=${inputElementList[inputCount].value}&`;
+            }
+            else {
+                urlString += `${inputElementList[inputCount].name}=${inputElementList[inputCount].value}`;
+            }
+            inputCount += 1;
+        }
+        window.location = urlString;
+    });
+</script>
+
 </html>

@@ -36,3 +36,6 @@ urlpatterns += [
         name='site_path'
         ),
 ]
+
+# Add the custom error handler view to the handlers
+handler500 = 'healthpass.views5.custom_server_error'
