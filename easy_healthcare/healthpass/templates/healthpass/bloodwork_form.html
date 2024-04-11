@@ -39,16 +39,16 @@
                     {% endfor %}
                 </div>
                 {% endfor %}
-                <!-- <div class="mb-4">
-                    <label for="blood_submit" class="sr-only">Submit</label>
-                    <input id="blood_submit" type="submit" name="blood_submit" value="blood" class="hidden">
+                <div>
+                    <label style="display: none;" for="blood_submit">Submit</label>
+                    <input style="display: none;" id="blood_submit" type="submit" name="blood_submit" value="blood">
                 </div>
                 <div class="mb-4">
-                    <label for="blood_cancel" class="sr-only">Cancel</label>
-                    <input id="blood_cancel" type="submit"
+                    <label style="display: none;" for="blood_cancel">Cancel</label>
+                    <input style="display: none;" id="blood_cancel" type="submit"
                         onclick="window.location='{% url 'health:user_home' %}'; return false;" name="blood_cancel"
-                        value="no blood" class="hidden">
-                </div> -->
+                        value="no blood">
+                </div>
                 <div class="flex flex-col space-y-4">
                     <button id="submit_blood" type="submit" name="blood_submit" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2">
                         Submit Blood Work
