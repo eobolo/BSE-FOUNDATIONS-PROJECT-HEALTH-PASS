@@ -167,6 +167,7 @@ main{
 
 }
 
+/* Responsiveness */
 @media screen and (max-width: 109px) {
     body {
         width: 250px;

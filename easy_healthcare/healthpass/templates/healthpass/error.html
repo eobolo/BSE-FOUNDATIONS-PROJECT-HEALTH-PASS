@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
+        *{
+            font-family: 'Poppins', sans-serif;
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #1ABC9CCC;
+        }
+
+        div {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d9534f;
+            font-size: 24px;
+        }
+
+        lord-icon {
+            --lord-icon-primary: #d9534f;
+            --lord-icon-secondary: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Server Error 500</h1>
+    <p>Sorry, something went wrong. Please try again later.</p>
+    <p>Or <a href="{% url 'login' %}">click here</a> to login</p>
+    <lord-icon src="https://cdn.lordicon.com/usownftb.json" trigger="hover" style="width:250px;height:250px">
+    </lord-icon>
+</body>
+
+</html>
