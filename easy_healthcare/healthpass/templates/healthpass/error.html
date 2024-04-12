@@ -2,11 +2,19 @@
 <html lang="en">
 
 <head>
-    <title>Password Reset Warning!!!</title>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
+        *{
+            font-family: 'Poppins', sans-serif;
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
         body {
             display: flex;
             flex-direction: column;
@@ -40,12 +48,9 @@
 </head>
 
 <body>
-    {% if error_message %}
-    <div>
-        <h1>{{ error_message }}</h1>
-    </div>
-    {% endif %}
-
+    <h1>Server Error 500</h1>
+    <p>Sorry, something went wrong. Please try again later.</p>
+    <p>Or <a href="{% url 'login' %}">click here</a> to login</p>
     <lord-icon src="https://cdn.lordicon.com/usownftb.json" trigger="hover" style="width:250px;height:250px">
     </lord-icon>
 </body>
