@@ -14,13 +14,13 @@ body {
     max-width: 1000px;
     margin: 20px auto;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgb(32, 185, 154, 0.9); /*rgba(0, 0, 0, 0.1); */
     border-radius: 5px;
 }
 
 .sidebar {
     flex: 1;
-    margin-top: 25%;
+    margin-top: 20%;
 
 }
 
@@ -36,21 +36,21 @@ h1 {
     color: #333;
 }
 
-.generalinfo-item {
+.bloodwork-item {
     background-color: #f9f9f9;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgb(32, 185, 154, 0.8); /*rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 0 10px rgb(32, 185, 154, 0.8);
 }
 
-.generalinfo-item ul {
+.bloodwork-item ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.generalinfo-item ul li {
+.bloodwork-item ul li {
     margin-bottom: 5px;
     font-size: 16px;
     color: #555;
@@ -59,11 +59,11 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
-.generalinfo-item ul li:hover {
+.bloodwork-item ul li:hover {
     background-color: rgba(72, 214, 186, 0.1);
 }
 
-.generalinfo-item ul li strong {
+.bloodwork-item ul li strong {
     color: #060606;
 }
 
