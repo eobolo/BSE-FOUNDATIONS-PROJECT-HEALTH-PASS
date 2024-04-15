@@ -21,6 +21,11 @@
                     {% include 'healthpass/messages.html' %}
                 {% else %}
                     {% include 'healthpass/messages.html' %}
+                    <div class="error-home">
+                        <p class="button1">
+                            <a href="{% url 'health:user_home' %}">Home</a>
+                        </p>
+                    </div>
                 {% endif %}
                 <div>
                     {% for bloodwork in bloodwork_list %}
