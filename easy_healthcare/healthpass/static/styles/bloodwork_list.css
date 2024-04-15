@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(72, 214, 186, 0.2);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.sidebar {
+    flex: 1;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation-name: changeBackground;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes changeBackground {
+    0%, 50% {
+        background-image: url('../images/loading2.png');
+        background-size: 150% auto;
+    }
+    50.01%, 100% {
+        background-image: url('../images/loading1.png');
+        background-size: 60% auto;
+    }
+}
+
+
+.main-content {
+    flex: 3;
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.bloodwork-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgb(32, 185, 154, 0.8); /*rgba(0, 0, 0, 0.1);*/
+}
+
+.bloodwork-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bloodwork-item ul li {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #555;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.bloodwork-item ul li:hover {
+    background-color: rgba(72, 214, 186, 0.1);
+}
+
+.bloodwork-item ul li strong {
+    color: #060606;
+}
+
+.back-home {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-home a {
+    padding: 10px 25px;
+    text-decoration: none;
+    color: #fff;
+    background-color: rgb(50, 192, 163);
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-home a:hover {
+    background-color: rgba(72, 214, 186, 0.8);
+}
