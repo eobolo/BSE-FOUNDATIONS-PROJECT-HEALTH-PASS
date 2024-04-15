@@ -159,3 +159,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'obolo.emmanuel31052000@gmail.com'
 EMAIL_HOST_PASSWORD = 'bejk inpi rhdl vonp'
 EMAIL_PORT = 587
+
