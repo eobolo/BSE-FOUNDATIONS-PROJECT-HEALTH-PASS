@@ -1,45 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% load static %}
         <title>Delete Read Blood Work</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static './styles/bloodwork_deletelist.css' %}">
+        <link rel="icon" type="image/png" href="{% static './images/loading1.png' %}">
+        <script src="https://cdn.lordicon.com/lordicon.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body>
-        {% if bloodwork_list %}
-            {% include 'healthpass/messages.html' %}
-        {% else %}
-            {% include 'healthpass/messages.html' %}
-        {% endif %}
-        <div>
-            {% for bloodwork in bloodwork_list %}
-                <ul>
-                    <li>
-                        <strong>Hb Genotype:</strong> {{ bloodwork.hb_genotype }}<br>
-                        <strong>Sickling Test:</strong> {{ bloodwork.sickling_test }}<br>
-                        <strong>Blood Group:</strong> {{ bloodwork.blood_group }}<br>
-                        <strong>Malaria Parasite:</strong> {{ bloodwork.malaria_parasite }}<br>
-                        <strong>Hepatitis A:</strong> {{ bloodwork.hepatitis_a }}<br>
-                        <strong>Hepatitis B:</strong> {{ bloodwork.hepatitis_b }}<br>
-                        <strong>HIV:</strong> {{ bloodwork.hiv }}<br>
-                        <strong>VDRL:</strong> {{ bloodwork.vdrl }}<br>
-                        <strong>H.pylori:</strong> {{ bloodwork.hpylori }}<br>
-                        <strong>Rhesus Antigen:</strong> {{ bloodwork.rhesus_antigen }}<br>
-                    </li>
-                </ul>
-                <p>
-                    <a href="{% url 'health:blood_work_delete' bloodwork.id %}">
-                        delete bloodwork {{ bloodwork.id }}
-                    </a>
-                </p>
-            {% endfor %}
-        </div>
-        <div>
-            <p>
-                <a href="{% url 'health:user_home' %}">Home</a>
-            </p>
+        <div class="container">
+            <div class="sidebar">
+                <lord-icon src="https://cdn.lordicon.com/usownftb.json" trigger="hover">
+                </lord-icon>  
+            </div>
+            <div class="main-content">
+                <h1><strong>Blood Work Data</strong></h1>
+                {% if bloodwork_list %}
+                    {% include 'healthpass/messages.html' %}
+                {% else %}
+                    {% include 'healthpass/messages.html' %}
+                    <div class="error-home">
+                        <p class="button1">
+                            <a href="{% url 'health:user_home' %}">Home</a>
+                        </p>
+                    </div>
+                {% endif %}
+                <div>
+                    {% for bloodwork in bloodwork_list %}
+                        <div class="bloodwork-item">
+                            <ul>
+                                <li><strong>Hb Genotype:</strong> {{ bloodwork.hb_genotype }}<br></li>
+                                <li><strong>Sickling Test:</strong> {{ bloodwork.sickling_test }}<br></li>
+                                <li><strong>Blood Group:</strong> {{ bloodwork.blood_group }}<br></li>
+                                <li><strong>Malaria Parasite:</strong> {{ bloodwork.malaria_parasite }}<br></li>
+                                <li><strong>Hepatitis A:</strong> {{ bloodwork.hepatitis_a }}<br></li>
+                                <li><strong>Hepatitis B:</strong> {{ bloodwork.hepatitis_b }}<br></li>
+                                <li><strong>HIV:</strong> {{ bloodwork.hiv }}<br></li>
+                                <li><strong>VDRL:</strong> {{ bloodwork.vdrl }}<br></li>
+                                <li><strong>H.pylori:</strong> {{ bloodwork.hpylori }}<br></li>
+                                <li><strong>Rhesus Antigen:</strong> {{ bloodwork.rhesus_antigen }}<br></li>
+                            </ul>
+                        </div>
+                        <div class="buttons">
+                            <p class="button2">
+                                <a href="{% url 'health:blood_work_delete' bloodwork.id %}">
+                                    delete bloodwork {{ bloodwork.id }}
+                                </a>
+                            </p>
+                            <p class="button1">
+                                <a href="{% url 'health:user_home' %}">Home</a>
+                            </p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div> 
         </div>
     </body>
-    <script>
-    </script>
 </html>

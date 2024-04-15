@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% load static %}
         <title>Read Urinalysis</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="{% static './styles/urinalysis_list.css' %}">
+        <link rel="icon" type="image/png" href="{% static './images/loading1.png' %}">
     </head>
     <body>
-        {% if urinalysis_list %}
-            {% include 'healthpass/messages.html' %}
-        {% else %}
-            {% include 'healthpass/messages.html' %}
-        {% endif %}
-        <div>
-            {% for urinalysis in urinalysis_list %}
-                <ul>
-                    <li>
-                        <strong>Color:</strong> {{ urinalysis.color }}<br>
-                        <strong>Appearance:</strong> {{ urinalysis.appearance }}<br>
-                        <strong>Glucose:</strong> {{ urinalysis.glucose }}<br>
-                        <strong>Bilirubin:</strong> {{ urinalysis.bilirubin }}<br>
-                        <strong>Ketone:</strong> {{ urinalysis.ketone }}<br>
-                        <strong>Blood:</strong> {{ urinalysis.blood }}<br>
-                        <strong>Protein:</strong> {{ urinalysis.protein }}<br>
-                        <strong>Nitrite:</strong> {{ urinalysis.nitrite }}<br>
-                        <strong>Microscopic Indicated:</strong> {{ urinalysis.microscopic_indicated }}<br>
-                        <strong>PH Scale:</strong> {{ urinalysis.ph }}<br>
-                        <strong>Specific Gravity:</strong> {{ urinalysis.specific_gravity }}<br>
-                        <strong>Urobilinogen:</strong> {{ urinalysis.urobilinogen }}<br>
-                    </li>
-                </ul>
-            {% endfor %}
-        </div>
-        <div>
-            <p>
-                <a href="{% url 'health:user_home' %}">Home</a>
-            </p>
+        <div class="container">
+            <div class="sidebar"></div>
+            <div class="main-content">
+                <h1><strong>Urinalysis Data</strong></h1>
+                {% if urinalysis_list %}
+                    {% include 'healthpass/messages.html' %}
+                {% else %}
+                    {% include 'healthpass/messages.html' %}
+                {% endif %}
+                <div class="urinalysis-list">
+                    {% for urinalysis in urinalysis_list %}
+                        <div class="urinalysis-item">
+                            <ul>
+                                <li><strong>Color:</strong> {{ urinalysis.color }}</li>
+                                <li><strong>Appearance:</strong> {{ urinalysis.appearance }}</li>
+                                <li><strong>Glucose:</strong> {{ urinalysis.glucose }}</li>
+                                <li><strong>Bilirubin:</strong> {{ urinalysis.bilirubin }}</li>
+                                <li><strong>Ketone:</strong> {{ urinalysis.ketone }}</li>
+                                <li><strong>Blood:</strong> {{ urinalysis.blood }}</li>
+                                <li><strong>Protein:</strong> {{ urinalysis.protein }}</li>
+                                <li><strong>Nitrite:</strong> {{ urinalysis.nitrite }}</li>
+                                <li><strong>Microscopic Indicated:</strong> {{ urinalysis.microscopic_indicated }}</li>
+                                <li><strong>PH Scale:</strong> {{ urinalysis.ph }}</li>
+                                <li><strong>Specific Gravity:</strong> {{ urinalysis.specific_gravity }}</li>
+                                <li><strong>Urobilinogen:</strong> {{ urinalysis.urobilinogen }}</li>
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="back-home">
+                    <p><a href="{% url 'health:user_home' %}">Back to Home</a></p>
+                </div>
+            </div>
         </div>
     </body>
-    <script>
-    </script>
 </html>

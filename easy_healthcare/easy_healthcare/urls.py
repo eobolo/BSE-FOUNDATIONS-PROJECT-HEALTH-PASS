@@ -38,4 +38,11 @@ urlpatterns += [
 ]
 
 # Add the custom error handler view to the handlers
+<<<<<<< HEAD
 handler500 = 'healthpass.views5.custom_server_error'
+=======
+handler500 = "healthpass.views5.custom_error_500"
+handler404 = "healthpass.views5.custom_error_404"
+handler403 = "healthpass.views5.custom_error_403"
+handler400 = "healthpass.views5.custom_error_400"
+>>>>>>> d4587570eb2ea87af95454b8da0f2e7052f05c11

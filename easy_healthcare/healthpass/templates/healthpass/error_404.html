@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404</title>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <link rel="icon" type="image/png" href="{% static './images/loading1.png' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #1ABC9CCC;
+        }
+
+        div {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d9534f;
+            font-size: 3rem;
+        }
+
+        lord-icon {
+            --lord-icon-primary: #d9534f;
+            --lord-icon-secondary: #666;
+        }
+
+        p {
+            font-size: 2rem;
+            font-weight: 500;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .blinking {
+            animation: blink 2s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Page Not Found Error 404</h1>
+    <p>Sorry, something went wrong. Please try again later.</p>
+    <!-- <p>Or <a href="{% url 'login' %}">click here</a> to login</p> -->
+    <p id="redirect">Redirecting in <strong class="blinking" id="timer" style="color: rgb(242, 58, 34);">5</strong></p>
+    <lord-icon src="https://cdn.lordicon.com/usownftb.json" trigger="hover" style="width:250px;height:250px">
+    </lord-icon>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        /*
+            This is a global function,
+            which has already being defined,
+            so when we use them again it's like
+            calling them and it returns an id
+            which can be used to stop the
+            setInterval function for good
+        */
+        let redirectInXSeconds = setInterval(() => {
+            const stringStrongTimer = document.querySelector("#timer");
+            let numberStrongTimer = Number.parseInt(stringStrongTimer.textContent, 10);
+            if (numberStrongTimer <= 1) {
+                clearInterval(redirectInXSeconds);
+                window.location = "/accounts/login";
+            }
+            stringStrongTimer.textContent = numberStrongTimer - 1;
+        }, 2000);
+    });
+</script>
+
+</html>
