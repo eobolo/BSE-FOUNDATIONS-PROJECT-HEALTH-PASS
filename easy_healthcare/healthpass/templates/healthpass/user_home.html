@@ -12,14 +12,14 @@
 <body>
     <div class="header">
         <div class="logo">
-            <a href="#"><img src="#" alt="Logo"></a>
+            <a href="#"><img src="{% static './images/loading1.png' %}" alt="healthPassLogo"></a>
         </div>
 
         <div class="nav-links">
-            <a href="#">HealthPass Benefits</a>
+            <!--<a href="#">HealthPass Benefits</a>
             <a href="#">Our Mission</a>
             <a href="#">The Team</a>
-            <a href="#">Contact Us</a>
+            <a href="#">Contact Us</a>-->
             <a href="{% url 'logout' %}?next={% url 'health:user_logout' %}"> Logout</a>
         </div>
     </div>
@@ -27,7 +27,7 @@
     <div class="main">
         {% include 'healthpass/messages.html' %}
         <div class="text">
-            <h1>Welcome to <span style="color: #00dfc4;">HealthPass™</span> {{ user.first_name }},<br>your medical
+            <h1>Welcome to HealthPass<span style="color: #00dfc4;"> {{ user.first_name }}</span>,<br>your medical
                 repository on the go.</h1>
         </div>
         <div class="categories">
