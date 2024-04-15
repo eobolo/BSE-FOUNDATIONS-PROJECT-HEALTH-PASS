@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HealthPass - Medical Repository</title>
     <link rel="stylesheet" href="{% static './styles/user_home.css' %}">
+    <link rel="icon" type="image/png" href="{% static './images/loading1.png' %}">
 </head>
 
 <body>
     <div class="header">
         <div class="logo">
-            <a href="#"><img src="#" alt="Logo"></a>
+            <a href="{% url 'health:user_home' %}"><img src="{% static './images/loading1.png' %}" alt="healthPassLogo"></a>
         </div>
-        
+
         <div class="nav-links">
-            <a href="#"> Our Partners </a>
-            <a href="#"> Contact Us</a>
-            <a href="#"> My Profile</a>
+            <!--<a href="#">HealthPass Benefits</a>
+            <a href="#">Our Mission</a>
+            <a href="#">The Team</a>
+            <a href="#">Contact Us</a>-->
             <a href="{% url 'logout' %}?next={% url 'health:user_logout' %}"> Logout</a>
         </div>
     </div>
-    
+
     <div class="main">
         {% include 'healthpass/messages.html' %}
-        <h1>Welcome to HealthPass {{ user.first_name }}, your medical repository on the go.</h1>
-
+        <div class="text">
+            <h1>Welcome to HealthPass<span style="color: #00dfc4;"> {{ user.first_name }}</span>,<br>your medical
+                repository on the go.</h1>
+        </div>
         <div class="categories">
             <div class="categories-select">
                 <button class="category">Select a category</button>
@@ -111,7 +116,7 @@
             </div>
         </div>
 
-        
+
     </div>
 </body>
 <script>
@@ -167,4 +172,5 @@
         }
     })
 </script>
+
 </html>

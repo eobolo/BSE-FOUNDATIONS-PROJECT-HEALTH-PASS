@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(72, 214, 186, 0.2);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    max-width: 1000px;
+    margin: 20px auto;
+    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.sidebar {
+    flex: 1;
+    order: 2;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.sidebar img{
+    margin-top: 70%;
+}
+
+.main-content {
+    flex: 3;
+    order: 1;
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.urinalysis-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.urinalysis-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.urinalysis-item ul li {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #555;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.urinalysis-item ul li:hover {
+    background-color: rgba(72, 214, 186, 0.1);
+}
+
+.urinalysis-item ul li strong {
+    color: #060606;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.buttons a {
+    padding: 10px 25px;
+    text-decoration: none;
+    color: #fff;
+    background-color: rgb(50, 192, 163);
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.buttons a:hover {
+    background-color: rgba(72, 214, 186, 0.8);
+}
+
+.error-home .button1 a {
+    padding: 10px 25px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    background-color: rgb(50, 192, 163);
+}
+
+.error-home .button1 a:hover {
+    background-color: rgba(72, 214, 186, 0.8);
+}
+
+.error-home {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: normal;
+}

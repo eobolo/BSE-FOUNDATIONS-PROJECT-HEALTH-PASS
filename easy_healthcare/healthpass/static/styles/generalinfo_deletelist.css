@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
+
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(72, 214, 186, 0.2);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.sidebar {
+    flex: 1;
+    margin-top: 25%;
+
+}
+
+
+.main-content {
+    flex: 3;
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.generalinfo-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgb(32, 185, 154, 0.8); /*rgba(0, 0, 0, 0.1);*/
+}
+
+.generalinfo-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.generalinfo-item ul li {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #555;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.generalinfo-item ul li:hover {
+    background-color: rgba(72, 214, 186, 0.1);
+}
+
+.generalinfo-item ul li strong {
+    color: #060606;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 10px;
+    
+}
+
+.buttons a {
+    padding: 10px 25px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button1 a {
+    background-color: rgb(50, 192, 163);
+}
+
+.button2 a {
+    background-color: rgba(199, 8, 8, 0.8);
+}
+
+.button1 a:hover {
+    background-color: rgba(72, 214, 186, 0.8);
+}
+
+
+.button2 a:hover {
+    background-color: rgba(201, 37, 37, 0.8);
+}
+
+.error-home .button1 a {
+    padding: 10px 25px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.error-home {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: normal;
+}
+
+lord-icon {
+    width:260px;
+    height:260px;
+    --lord-icon-primary: #d9534f;
+    --lord-icon-secondary: #666;
+}
