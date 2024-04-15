@@ -7,12 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HealthPass - Medical Repository</title>
     <link rel="stylesheet" href="{% static './styles/user_home.css' %}">
+    <link rel="icon" type="image/png" href="{% static './images/loading1.png' %}">
 </head>
 
 <body>
     <div class="header">
         <div class="logo">
-            <a href="#"><img src="{% static './images/loading1.png' %}" alt="healthPassLogo"></a>
+            <a href="{% url 'health:user_home' %}"><img src="{% static './images/loading1.png' %}" alt="healthPassLogo"></a>
         </div>
 
         <div class="nav-links">

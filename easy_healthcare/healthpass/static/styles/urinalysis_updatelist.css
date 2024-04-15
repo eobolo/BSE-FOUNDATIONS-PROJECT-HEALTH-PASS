@@ -89,3 +89,22 @@ h1 {
 .buttons a:hover {
     background-color: rgba(72, 214, 186, 0.8);
 }
+
+.error-home .button1 a {
+    padding: 10px 25px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    background-color: rgb(50, 192, 163);
+}
+
+.error-home .button1 a:hover {
+    background-color: rgba(72, 214, 186, 0.8);
+}
+
+.error-home {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: normal;
+}

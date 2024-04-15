@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="{% static './styles/bloodwork_updatelist.css' %}">
+        <link rel="icon" type="image/png" href="{% static './images/loading1.png' %}">
     </head>
     <body>
         <div class="container">
@@ -19,6 +20,11 @@
                     {% include 'healthpass/messages.html' %}
                 {% else %}
                     {% include 'healthpass/messages.html' %}
+                    <div class="error-home">
+                        <p class="button1">
+                            <a href="{% url 'health:user_home' %}">Home</a>
+                        </p>
+                    </div>
                 {% endif %}
                 <div class="bloodwork-list">
                     {% for bloodwork in bloodwork_list %}

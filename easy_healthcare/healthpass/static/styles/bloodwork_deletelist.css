@@ -101,6 +101,20 @@ h1 {
 }
 
 
+.error-home .button1 a {
+    padding: 10px 25px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.error-home {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: normal;
+}
+
 lord-icon {
     width:260px;
     height:260px;

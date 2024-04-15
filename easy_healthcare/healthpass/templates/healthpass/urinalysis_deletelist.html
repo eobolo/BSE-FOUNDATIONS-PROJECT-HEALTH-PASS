@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{% static './styles/urinalysis_deletelist.css' %}">
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://cdn.lordicon.com/lordicon.js"></script>
+        <link rel="icon" type="image/png" href="{% static './images/loading1.png' %}">
     </head>
     <body>
         <div class="container">
@@ -21,6 +22,11 @@
                     {% include 'healthpass/messages.html' %}
                 {% else %}
                     {% include 'healthpass/messages.html' %}
+                    <div class="error-home">
+                        <p class="button1">
+                            <a href="{% url 'health:user_home' %}">Home</a>
+                        </p>
+                    </div>
                 {% endif %}
                 <div class="urinalysis-list">
                     {% for urinalysis in urinalysis_list %}
