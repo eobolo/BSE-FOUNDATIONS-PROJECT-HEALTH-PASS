@@ -42,3 +42,4 @@ handler500 = "healthpass.views5.custom_error_500"
 handler404 = "healthpass.views5.custom_error_404"
 handler403 = "healthpass.views5.custom_error_403"
 handler400 = "healthpass.views5.custom_error_400"
+
