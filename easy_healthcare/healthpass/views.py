@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpResponse
@@ -104,7 +105,7 @@ class CustomSignUp(View):
         names_bool = CustomUser.objects.filter(
             first_name=check_first_name,
             last_name=check_last_name,
-        ).exists();
+        ).exists()
         if names_bool:
             message = f"User with the names {check_first_name} {check_last_name} already exists"
             customuser_form = CustomUserCreationForm()

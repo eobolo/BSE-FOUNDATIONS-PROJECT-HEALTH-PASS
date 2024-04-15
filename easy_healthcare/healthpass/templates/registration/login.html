@@ -5,7 +5,7 @@
         <title>User Secure Login</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{% static './styles/login.css' %}">
+        <link rel="stylesheet" href="{% static './styles/login.css' %}" type="text/css">
     </head>
     <body>
         {% include 'healthpass/messages.html' %}
@@ -36,15 +36,15 @@
                 </form>
                 <div  class="btn-group">
                     <div >
-                        <p class="btn-p"><span class="btn-p-span">Create an account here:</span> To add your Infomation.</p>
+                        <p class="btn-p"><span class="btn-p-span"> No account &#128515; </span></p>
                     </div>
                     <div>
-                        <a href="{% url 'health:user_signup' %}">Sign up</a>
+                        <a href="{% url 'health:user_signup' %}">Sign Up Here</a>
                     </div>
+                    <div class="forgot password">
+                        <a href="{% url 'password_reset' %}">forgot password?</a>
+                    </div>                
                 </div>
-                <div class="forgot password">
-                    <a href="{% url 'password_reset' %}">forgot password?</a>
-                </div>                
             </div>
         </div>
     </body>
