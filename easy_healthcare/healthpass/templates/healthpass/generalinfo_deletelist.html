@@ -1,48 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% load static %}
         <title>Delete Read General Info</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static './styles/generalinfo_deletelist.css' %}">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.lordicon.com/lordicon.js"></script>
     </head>
     <body>
-        {% if generalinfo_list %}
-            {% include 'healthpass/messages.html' %}
-        {% else %}
-            {% include 'healthpass/messages.html' %}
-        {% endif %}
-        <div>
-            {% for generalinfo in generalinfo_list %}
-                <ul>
-                    <li>
-                        <strong>Gender:</strong> {{ generalinfo.gender }}<br>
-                        <strong>Country:</strong> {{ generalinfo.country }}<br>
-                        <strong>Passport Number:</strong> {{ generalinfo.passport_number }}<br>
-                        <strong>Date of Birth:</strong> {{ generalinfo.date_of_birth }}<br>
-                        <strong>Weight:</strong> {{ generalinfo.weight }}<br>
-                        <strong>Name of Emergency Contact:</strong> {{ generalinfo.name_of_emergency_contact }}<br>
-                        <strong>Relationship:</strong> {{ generalinfo.relationship }}<br>
-                        <strong>Email of Emergency Contact:</strong> {{ generalinfo.email_of_emergency_contact }}<br>
-                        <strong>Phone Number of Emergency Contact:</strong> {{ generalinfo.phone_number_of_emergency_contact }}<br>
-                        {% for immunization in generalinfo.immunizations.all %}
-                            <strong>Immunization{{ immunization.id }}:</strong> {{ immunization.immunization }}<br>
-                        {% endfor %}
-                        {% for allergy in generalinfo.allergies.all %}
-                            <strong>Allergy{{ allergy.id }}:</strong> {{ allergy.allergy }}<br>
-                        {% endfor %}
-                    </li>
-                </ul>
-                <p>
-                    <a href="{% url 'health:general_info_delete' generalinfo.id %}">
-                        delete generalinfo {{ generalinfo.id }}
-                    </a>
-                </p>
-            {% endfor %}
-        </div>
-        <div>
-            <p>
-                <a href="{% url 'health:user_home' %}">Home</a>
-            </p>
+        <div class="container">
+            <div class="sidebar">
+                <lord-icon src="https://cdn.lordicon.com/usownftb.json" trigger="hover">
+                </lord-icon>  
+            </div>
+            <div class="main-content">
+                <h1><strong>General Information</strong></h1>
+                {% if generalinfo_list %}
+                    {% include 'healthpass/messages.html' %}
+                {% else %}
+                    {% include 'healthpass/messages.html' %}
+                {% endif %}
+                <div class="generalinfo-list">
+                    {% for generalinfo in generalinfo_list %}
+                        <div class="generalinfo-item">
+                            <ul>
+                                <li><strong>Gender:</strong> {{ generalinfo.gender }}<br></li>
+                                <li><strong>Country:</strong> {{ generalinfo.country }}<br></li>
+                                <li><strong>Passport Number:</strong> {{ generalinfo.passport_number }}<br></li>
+                                <li><strong>Date of Birth:</strong> {{ generalinfo.date_of_birth }}<br></li>
+                                <li><strong>Weight:</strong> {{ generalinfo.weight }}<br></li>
+                                <li><strong>Name of Emergency Contact:</strong> {{ generalinfo.name_of_emergency_contact }}<br></li>
+                                <li><strong>Relationship:</strong> {{ generalinfo.relationship }}<br></li>
+                                <li><strong>Email of Emergency Contact:</strong> {{ generalinfo.email_of_emergency_contact }}<br></li>
+                                <li><strong>Phone Number of Emergency Contact:</strong> {{ generalinfo.phone_number_of_emergency_contact }}<br></li>
+                                    {% for immunization in generalinfo.immunizations.all %}
+                                        <li><strong>Immunization{{ immunization.id }}:</strong> {{ immunization.immunization }}<br></li>
+                                    {% endfor %}
+                                    {% for allergy in generalinfo.allergies.all %}
+                                        <li><strong>Allergy{{ allergy.id }}:</strong> {{ allergy.allergy }}<br></li>
+                                    {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="buttons">
+                            <p class="button2">
+                                <a href="{% url 'health:general_info_delete' generalinfo.id %}">
+                                    delete generalinfo {{ generalinfo.id }}
+                                </a>
+                            </p>
+                            <p class="button1">
+                                <a href="{% url 'health:user_home' %}">Home</a>
+                            </p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </body>
     <script>
