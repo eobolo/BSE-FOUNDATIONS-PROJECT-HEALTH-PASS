@@ -1,41 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% load static %}
         <title>User Secure Login</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static './styles/login.css' %}" type="text/css">
     </head>
     <body>
         {% include 'healthpass/messages.html' %}
         {% if form.errors %}
-            <div>
+            <div class="Error">
                 <p>An Error occurred in your form login submission :(</p>
             </div>
         {% endif %}
-        <div>
-            {% load crispy_forms_tags %}
-            <form method="post" action="{% url 'login' %}">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <p>
-                    <label style="display: none;" for="user_signin"></label>
-                    <input style="display: none;" id="user_signin" type="submit" name="user_signin" value="signin">
-                </p>
-                <p>
-                    <button id="signin_user" type="button">Login</button>
-                </p>
-            </form>
-        </div>
-        <div>
-            <div>
-                <p>No Account, Create an account here :)</p>
+        <div class="container">
+            <div class="img-form">
+                <img src="{% static './images/loading1.png' %}"  alt="health" class="img" />
             </div>
-            <div>
-                <a href="{% url 'health:user_signup' %}">Sign up</a>
+            <div class="form-container">
+                {% load crispy_forms_tags %}
+                <div>
+                    <h1 class="form-h1">Login to HealthPass</h1>
+                </div>
+                <form method="post" action="{% url 'login' %}" class="form">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <p class="form-container p">
+                        <label style="display: none;" for="user_signin">UserName</label>
+                        <input style="display: none;" id="user_signin" type="submit" name="user_signin" value="signin">
+                    </p>
+                    <p>
+                        <button id="signin_user" type="button">Login</button>
+                    </p>
+                </form>
+                <div  class="btn-group">
+                    <div >
+                        <p class="btn-p"><span class="btn-p-span"> No account &#128515; </span></p>
+                    </div>
+                    <div>
+                        <a href="{% url 'health:user_signup' %}">Sign Up Here</a>
+                    </div>
+                    <div class="forgot password">
+                        <a href="{% url 'password_reset' %}">forgot password?</a>
+                    </div>                
+                </div>
             </div>
-        </div>
-        <div>
-            <a href="{% url 'password_reset' %}">forgot password</a>
         </div>
     </body>
     <script>

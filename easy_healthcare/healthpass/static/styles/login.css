@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,600;1,600&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.Error {
+    /* Set initial background color with transparency */
+    background-color: rgb(213, 90, 90);
+    /* Apply box shadow to create the glassy effect */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    /* Add some padding and margin for spacing */
+    /* Optional: Add border-radius for rounded corners */
+    border-radius: 10px;
+    /* Optional: Apply a transition for smooth animation */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.Error p{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-left: 20px;
+
+}
+
+.container {
+    display: flex;
+}
+
+.img-form {
+    margin-top: 5px;
+    flex: 1;
+}
+
+.img {
+    width: 500px;
+    padding-left: 30px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 5px;
+    flex: 1
+}
+
+.form-h1 {
+    font-size: 2.5rem;
+    color: rgb(26, 37, 28);
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.form-label {
+    font-size: 1rem;
+    color: rgb(35, 31, 31);
+    font-weight: 900;
+    margin-top: 10px;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-container input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+#signin_user {
+    background-color: #2da162;
+    color: white;
+    cursor: pointer;
+    width: 51%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.5rem;
+}
+
+/* Style for the button group container */
+.btn-group {
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+    align-items: center;
+    margin-bottom: 170px;
+}
+
+.btn-p {
+    font-size: 20px;
+    color: #000;
+}
+
+.btn-p-span {
+    font-size: 20px;
+    cursor: pointer;
+}
+.btn-group a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* .btn-group a:hover {
+    text-decoration: underline;
+} */
+
+.btn-group div:last-child a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* .btn-group div:last-child a:hover {
+    text-decoration: underline;
+} */
+
+.forgot.password a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 30px;
+}
+/* 
+.forgot.password a:hover {
+    text-decoration: underline;
+} */
