@@ -47,3 +47,5 @@ urlpatterns = [
     path("custom_general_info_read/", views4.CustomGeneralInfoListView.as_view(), name="custom_general_info_read"),
     path("custom_urinalysis_read/", views4.CustomUrinalysisListView.as_view(), name="custom_urinalysis_read"),
 ]
+
+
