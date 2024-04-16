@@ -13,6 +13,8 @@ class CustomBloodWorkListView(ListView):
     context_object_name = "bloodwork_list"
 
     def get_queryset(self):
+        if 'page' in self.request.GET:
+            return super().get_queryset()
 
         """
         get the base query set based on the model
@@ -58,6 +60,9 @@ class CustomBloodWorkListView(ListView):
         return base_query_set
 
     def get_context_data(self, **kwargs):
+        if 'page' in self.request.GET:
+            self.object_list = self.get_queryset()
+            return super().get_context_data(**kwargs)
         # first save an object_list to self.get_queryset()
         # this is because I overwrote the get(self, request, *args, **kwargs) method
         # but if you don't it is not needed.
@@ -101,8 +106,7 @@ class CustomBloodWorkListView(ListView):
             if not isinstance(request.user, CustomUser):
                 login_url = reverse("health:custom_login")
                 return redirect(login_url)
-
-            # get context data
+            # get context data if search was done
             context = self.get_context_data(**kwargs)
             # now render result
             return render(request, self.template_name, context)

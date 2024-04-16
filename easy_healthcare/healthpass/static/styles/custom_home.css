@@ -50,6 +50,7 @@ nav{
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     margin-left: 200px;
+    gap: 15px;
     /* color: black; */
 }
 
@@ -61,7 +62,7 @@ nav{
     width: 350px;
     height: 200px;
     border-radius: 10px;
-    background-image: radial-gradient(rgba(89, 87, 87, 0.637), rgba(77, 77, 77, 0.653)),url(http://127.0.0.1:8000/static/images/blood-work.jpg);
+    background-image: radial-gradient(rgba(89, 87, 87, 0.637), rgba(77, 77, 77, 0.653)),url(../images/blood-work.jpg);
     color: white;
     font-size: 20px;
 }
@@ -75,7 +76,7 @@ nav{
     width: 350px;
     height: 200px;
     border-radius: 10px;
-    background-image: radial-gradient(rgba(89, 87, 87, 0.637), rgba(77, 77, 77, 0.653)),url(http://127.0.0.1:8000/static/images/general-info.jpg);
+    background-image: radial-gradient(rgba(89, 87, 87, 0.637), rgba(77, 77, 77, 0.653)),url(../images/general-info.jpg);
     color: white;
     font-size: 20px;
 }
@@ -88,7 +89,7 @@ nav{
     width: 350px;
     height: 200px;
     border-radius: 10px;
-    background-image: radial-gradient(rgba(89, 87, 87, 0.637), rgba(77, 77, 77, 0.653)),url(http://127.0.0.1:8000/static/images/urinalysis.JPG);
+    background-image: radial-gradient(rgba(89, 87, 87, 0.637), rgba(77, 77, 77, 0.653)),url(../images/urinalysis.JPG);
     color: white;
     font-size: 20px;
 }
