@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'poppins', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.logo{
+    /* background-color: red; */
+    height: 200px;
+    /* width: ; */
+    margin-top: -18px;
+}
+
+
+nav{
+    height: 100px;
+    /* background-color: red; */
+}
+
+.main-div{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.checking{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 700px;
+    /* background-color: red; */
+}
+
+.grid{
+    margin-top: 30px;
+    width: 80%;
+    height: 500px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin-left: 200px;
+    /* color: black; */
+}
+
+.blood-works{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 200px;
+    border-radius: 10px;
+    background-image: radial-gradient(rgba(89, 87, 87, 0.637), rgba(77, 77, 77, 0.653)),url(http://127.0.0.1:8000/static/images/blood-work.jpg);
+    color: white;
+    font-size: 20px;
+}
+
+.general-infos{
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 200px;
+    border-radius: 10px;
+    background-image: radial-gradient(rgba(89, 87, 87, 0.637), rgba(77, 77, 77, 0.653)),url(http://127.0.0.1:8000/static/images/general-info.jpg);
+    color: white;
+    font-size: 20px;
+}
+
+.urinalysis{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 200px;
+    border-radius: 10px;
+    background-image: radial-gradient(rgba(89, 87, 87, 0.637), rgba(77, 77, 77, 0.653)),url(http://127.0.0.1:8000/static/images/urinalysis.JPG);
+    color: white;
+    font-size: 20px;
+}
+
+.log-out{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 200px;
+    border-radius: 10px;
+    background-color: white;
+    color: rgba(12, 123, 12, 0.845);
+    font-size: 30px;
+    font-weight: 600;
+}
