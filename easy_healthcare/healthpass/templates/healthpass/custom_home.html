@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang=en">
+<html lang="en">
     <head>
+        {% load static %}
         <title>Health Practitioner Page</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
+        <link rel="stylesheet" href="{% static './styles/custom_home.css' %}">
+        <!-- <style>
             nav {
                 display: flex;
                 flex-direction: row;
@@ -12,32 +14,37 @@
                 height: inherit;
                 width: inherit;
             }
-        </style>
+        </style> -->
     </head>
     <body>
-        <header>
-            <nav>
-                <!-- Add the read blood, urinal analysis, and general info links here. -->
-                <p>
-                    <a href="{% url 'health:custom_blood_work_read' %}">check blood works<a>
-                </p>
-                <p>
-                    <a href="{% url 'health:custom_general_info_read' %}">check general infos<a>
-                </p>
-                <p>
-                    <a href="{% url 'health:custom_urinalysis_read' %}">check urinalysis</a>
-                </p>
-                <p>
-                    <a href="{% url 'health:custom_logout' %}">Log out</a>
-                </p>
-            </nav>
-        </header>
+        <nav>
+            <div class="">
+                <img src="http://127.0.0.1:8000/static/images/loading2.png" alt="health" class="logo">
+            </div>
+        </nav>
         <main>
             {% include 'healthpass/messages.html' %}
-            <div>
+            <div class="main-div">
                 <h1>Welcome to the Custom Health Practitioner Page</h1>
-                <p>Hello, Health Practitioner, {{ custom_logged_user.first_name }} {{ custom_logged_user.last_name }}</p>
+                <p class="Practitioner">Hello, Health Practitioner, {{ custom_logged_user.first_name }} {{ custom_logged_user.last_name }}</p>
             </div>
         </main>
+        <section class="checking">
+            <div class="grid">
+                <!-- Add the read blood, urinal analysis, and general info links here. -->
+                <div>
+                    <a href="{% url 'health:custom_blood_work_read' %}" class="blood-works">check blood works</a>
+                </div>
+                <div class="">
+                    <a href="{% url 'health:custom_general_info_read' %}" class="general-infos">check general infos</a>
+                </div>
+                <div class="">
+                    <a href="{% url 'health:custom_urinalysis_read' %}" class="urinalysis">check urinalysis</a>
+                </div>
+                <div class="">
+                    <a href="{% url 'health:custom_logout' %}" class="log-out">Log out</a>
+                </div>
+            </div>
+        </section>
     </body>
 </html>

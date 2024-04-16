@@ -5,15 +5,20 @@
         <title>Custom Ban: Not allowed!!!</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static './styles/custom_ban.css' %}">
     </head>
     <body>
+        <section class="error">
         {% if error_message %}
-            <div>
+            <div class="error-message">
                 {{ error_message }}
             </div>
         {% endif %}
-        <div>
-            <h1>You have been blocked from accessing this page.</h1>
-        </div>
+        </section>
+        <section class="blocked-section">
+            <div class="blocked">
+                <h1>You have been blocked from accessing this page.</h1>
+            </div>
+        </section>
     </body>
 </html>
