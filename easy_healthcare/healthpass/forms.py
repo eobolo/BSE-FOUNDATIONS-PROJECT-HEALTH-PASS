@@ -9,5 +9,5 @@ class CustomUserCreationForm(UserCreationForm):
         fields = ("first_name", "last_name", "email") + UserCreationForm.Meta.fields
 
 class CustomLoginForm(forms.Form):
-    username_or_email = forms.CharField(max_length=300, help_text="Enter your username or email")
-    password = forms.CharField(help_text="Enter your password", widget=forms.PasswordInput)
+    username_or_email = forms.CharField(max_length=300)
+    password = forms.CharField(widget=forms.PasswordInput)
