@@ -18,11 +18,6 @@
         </style> -->
     </head>
     <body>
-        <nav>
-            <div class="">
-                <img src="{% static './images/loading2.png' %}" alt="health" class="logo">
-            </div>
-        </nav>
         <main>
             {% include 'healthpass/messages.html' %}
             <div class="main-div">
@@ -30,6 +25,11 @@
                 <p class="Practitioner">Hello, Health Practitioner, {{ custom_logged_user.first_name }} {{ custom_logged_user.last_name }}</p>
             </div>
         </main>
+        <nav>
+            <div class="">
+                <img src="{% static './images/loading2.png' %}" alt="health" class="logo">
+            </div>
+        </nav>
         <section class="checking">
             <div class="grid">
                 <!-- Add the read blood, urinal analysis, and general info links here. -->
