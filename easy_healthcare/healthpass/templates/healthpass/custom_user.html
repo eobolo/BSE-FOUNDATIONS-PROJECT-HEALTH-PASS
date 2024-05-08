@@ -5,15 +5,22 @@
         <title>Secure Sign up</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
         <link rel="icon" type="image/png" href="{% static './images/loading1.png' %}">
+        <link rel="stylesheet" href="{% static './styles/custom_user.css' %}" type="text/css">
     </head>
     <body>
         {% if customuser_form.errors %}
-            <div>
+            <div class="Error">
                 <p>{{ error_message_1 }}</p>
             </div>
         {% endif %}
-        <div>
+        {% if error_message %}
+            <div class="Error">
+                <p>{{ error_message }}</p>
+            </div>
+        {% endif %}
+        <div class="form-container">
             {% load crispy_forms_tags %}
             <form method="post" action="{% url 'health:custom_signup' %}">
                 {% csrf_token %}
@@ -22,22 +29,21 @@
                     <label style="display: none;" for="custom_signup"></label>
                     <input style="display: none;" id="custom_signup" type="submit" name="custom_signup" value="signup">
                 </p>
-                <p>
+                <p class="signup_button">
                     <button id="signup_custom" type="button">Sign Up</button>
                 </p>
+                <div class="as_account">
+                    <div>
+                        <p>Already have an account?</p>
+                    </div>
+                    <div class="div_login">
+                        <p>
+                            <a href="{% url 'health:custom_login' %}">Sign in</a>
+                        </p>
+                    </div>
+                </div>
             </form>
         </div>
-        <div>
-            <p>Already have an account?</p>
-        </div>
-        <div>
-            <a href="{% url 'health:custom_login' %}">Sign in</a>
-        </div>
-        {% if error_message %}
-            <div>
-                <p>{{ error_message }}</p>
-            </div>
-        {% endif %}
     </body>
     <script>
         const CustomButton = document.querySelector("#signup_custom");
