@@ -102,6 +102,7 @@ class CustomSignUp(View):
         # check if first name and lastname already exist
         check_first_name = request.POST.get("first_name")
         check_last_name = request.POST.get("last_name")
+        check_first_name, check_last_name = normalize_data(check_first_name, check_last_name)
         names_bool = CustomUser.objects.filter(
             first_name=check_first_name,
             last_name=check_last_name,
