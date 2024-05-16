@@ -2,6 +2,9 @@
 
 Django is a Python web framework, thus requiring Python to be installed on your machine. At the time of writing, Python 3.12 is the latest version.
 
+## Checkout HealthPass
+   - [healthpass](https://olugbeminiyi2000.pythonanywhere.com/accounts/login/)
+
 ### Installation Steps:
 
 1. **Download Python**: 
