@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "healthpass.apps.HealthpassConfig",
+    "academic_feedback_sys.apps.AcademicFeedbackSysConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
