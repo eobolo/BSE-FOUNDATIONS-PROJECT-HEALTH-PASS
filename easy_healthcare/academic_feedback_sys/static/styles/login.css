@@ -1,9 +1,11 @@
             @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-            *{
+
+            * {
                 font-family: "Poppins", sans-serif;
                 font-weight: 400;
                 font-style: normal;
             }
+
             body {
                 height: 100vh;
                 display: flex;
@@ -12,24 +14,30 @@
                 align-items: center;
                 padding-top: 3rem;
             }
+
             .errorlist {
                 display: none;
             }
+
             .form-div {
                 height: inherit;
                 display: flex;
                 flex-direction: column;
             }
+
             .header-div {
                 flex: 1;
             }
+
             .form-form {
                 flex: 6;
             }
+
             label {
                 display: block;
                 margin-bottom: 1rem;
             }
+
             input {
                 width: 90%;
                 border-width: 0px 0px 2px 0px;
@@ -40,13 +48,16 @@
                 outline: none;
                 transition: border-color 1s ease-in-out;
             }
+
             input:hover {
                 cursor: pointer;
             }
+
             input:focus {
                 border-width: 0px 0px 2px 0px;
                 border-color: #000;
             }
+
             .user-icon {
                 position: relative;
                 top: -135px;
@@ -54,6 +65,7 @@
                 font-size: 18px;
                 color: #c6c3c3;
             }
+
             .password-icon {
                 position: relative;
                 top: -45px;
