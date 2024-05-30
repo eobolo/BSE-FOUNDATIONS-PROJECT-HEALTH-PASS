@@ -1,7 +1,7 @@
 const userUsername = document.querySelector("#id_username");
 const userPassword = document.querySelector("#id_password");
 
-userUsername.addEventListener("click", () => {
+userUsername.addEventListener("focus", () => {
     const usernameIcon = document.querySelector(".user-icon");
     usernameIcon.style.color = "#000";
 })
@@ -10,7 +10,7 @@ userUsername.addEventListener("blur", () => {
     usernameIcon.style.color = "#c6c3c3";
 })
 
-userPassword.addEventListener("click", () => {
+userPassword.addEventListener("focus", () => {
     const passwordIcon = document.querySelector(".password-icon");
     passwordIcon.style.color = "#000";
 })
