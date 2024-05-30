@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-%ux=9ptjlzqw3fsv%+hec$9nbczl5%345d(@xi8+04ka!vc8=="
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -31,14 +31,15 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    "healthpass.apps.HealthpassConfig",
     "academic_feedback_sys.apps.AcademicFeedbackSysConfig",
+    "healthpass.apps.HealthpassConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
     "crispy_forms",
     "crispy_bootstrap5",
     'widget_tweaks',
@@ -137,7 +138,7 @@ AUTHENTICATION_BACKENDS = [
     'healthpass.backends.CustomBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
-LOGIN_REDIRECT_URL = "/healthpass/user_home/"
+# LOGIN_REDIRECT_URL = "/healthpass/user_home/"
 LOGOUT_REDIRECT_URL = "/accounts/login/"
 
 # define your media url and root
@@ -150,6 +151,7 @@ MEDIA_URL_AUDIO = '/media/audio/'
 
 # Static Files Directories
 STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'academic_feedback_sys', 'static'),
         os.path.join(BASE_DIR, 'healthpass', 'static'),
 ]
 # Email settings

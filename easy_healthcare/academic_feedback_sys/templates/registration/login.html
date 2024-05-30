@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <title>Teacher Login</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/95cc5340fb.js" crossorigin="anonymous"></script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+            *{
+                font-family: "Poppins", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+            body {
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 3rem;
+            }
+            .errorlist {
+                display: none;
+            }
+            .form-div {
+                height: inherit;
+                display: flex;
+                flex-direction: column;
+            }
+            .header-div {
+                flex: 1;
+            }
+            .form-form {
+                flex: 6;
+            }
+            label {
+                display: block;
+                margin-bottom: 1rem;
+            }
+            input {
+                width: 90%;
+                border-width: 0px 0px 2px 0px;
+                border-color: #c6c3c3;
+                height: 2rem;
+                padding-left: 30px;
+                font-size: 17px;
+                outline: none;
+                transition: border-color 1s ease-in-out;
+            }
+            input:hover {
+                cursor: pointer;
+            }
+            input:focus {
+                border-width: 0px 0px 2px 0px;
+                border-color: #000;
+            }
+            .user-icon {
+                position: relative;
+                top: -135px;
+                left: -15px;
+                font-size: 18px;
+                color: #c6c3c3;
+            }
+            .password-icon {
+                position: relative;
+                top: -45px;
+                left: 5px;
+                font-size: 18px;
+                color: #c6c3c3;
+            }
+        </style>
+    </head>
+    <body>
+        {% if form.errors %}
+            <div class="Error">
+                <p>Incorrect correct username or password</p>
+                <p>both fields are case sensitive.</p>
+            </div>
+        {% endif %}
+        <div class="form-div">
+             <div class="header-div">
+                <h1>Login to Teacher's Portal</h1>
+            </div>
+            <form method="post" action="{% url 'login' %}" class="form-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <i class="fa-solid fa-unlock password-icon"></i>
+                <i class="fa-solid fa-user user-icon"></i>
+                <p>
+                    <button type="submit">Login</button>
+                </p>
+            </form>
+        </div>
+    </body>
+    <script>
+        const userUsername = document.querySelector("#id_username");
+        const userPassword = document.querySelector("#id_password");
+
+        userUsername.addEventListener("click", () => {
+            const usernameIcon = document.querySelector(".user-icon");
+            usernameIcon.style.color = "#000";
+        })
+        userUsername.addEventListener("blur", () => {
+            const usernameIcon = document.querySelector(".user-icon");
+            usernameIcon.style.color = "#c6c3c3";
+        })
+
+        userPassword.addEventListener("click", () => {
+            const passwordIcon = document.querySelector(".password-icon");
+            passwordIcon.style.color = "#000";
+        })
+        userPassword.addEventListener("blur", () => {
+            const passwordIcon = document.querySelector(".password-icon");
+            passwordIcon.style.color = "#c6c3c3";
+        });
+    </script>
+</html>

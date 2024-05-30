@@ -13,14 +13,14 @@ class Subject(models.Model):
         ("BIOL", "Biology"),
         ("GEOG", "Geography"),
         ("CIVS", "Civics"),
-        ("AGRI SCI", "Agricultural Science"),
+        ("AGRIC", "Agricultural Science"),
         ("ECON", "Economics"),
         ("COMR", "Commerce"),
         ("GOVT", "Government"),
         ("NUTR", "Nutrition"),
-        ("RELI ST", "Religious Studies"),
-        ("TECH DRAW", "Technical Drawing"),
-        ("LIT ENG", "Literature in English"),
+        ("RELISTUD", "Religious Studies"),
+        ("TECHDRAW", "Technical Drawing"),
+        ("LITER", "Literature in English"),
         ("ACCT", "Accounting"),
         ("MKT", "Marketing"),
     ]
@@ -52,10 +52,11 @@ class Teacher(models.Model):
         related_name="teachers",
     )
     def __str__(self):
-        return "<{0}> class, names: {1} {2}.".format(
-            self.__class__.___name__,
+        return "<{0}> class, names: {1} {2} {3}.".format(
+            self.__class__.__name__,
             self.staff.first_name,
             self.staff.last_name,
+            self.subject.get_subject_display(),
         )
 
 
@@ -115,8 +116,8 @@ class Score(models.Model):
     )
 
     def __str__(self):
-        return "<{0}> class, score: {1}".format(
-            self.__class__name__,
+        return "<{0}> class, score: {1}.".format(
+            self.__class__.__name__,
             self.score,
         )
 
