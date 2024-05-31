@@ -79,6 +79,11 @@ class Student(models.Model):
         related_name="students",
     )
 
+    class Meta:
+        permissions = (
+            ('edit_student_grade', 'update_student_grade'),
+        )
+
     def __str__(self):
         return "<{0}> class, names: {1} {2} {3}.".format(
             self.__class__.__name__,
