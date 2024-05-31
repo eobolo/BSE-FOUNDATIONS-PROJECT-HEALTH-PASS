@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{logged_teacher_obj.first_name}} Page</title>
+</head>
+<body>
+    <header>
+        <div>
+            Hello {{logged_teacher_obj.first_name}} {{logged_teacher_obj.last_name}} Welcome.
+        </div>
+        <div>
+            <button>
+                <a href="{% url 'logout' %}">Logout</a>
+            </button>
+        </div>
+    </header>
+    <main>
+        <div>
+            <a href="{% url 'academic:profile' %}">Profile</a>
+        </div>
+        <div>
+            <a href="{% url 'academic:students' %}">Students</a>
+        </div>
+        <div>
+            <a href="{% url 'academic:recent_grades' %}">Recently Graded</a>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
