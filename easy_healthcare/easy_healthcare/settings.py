@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     'widget_tweaks',
+    'guardian',
 ]
 
 # Template Packs
@@ -137,6 +138,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTHENTICATION_BACKENDS = [
     'healthpass.backends.CustomBackend',
     'django.contrib.auth.backends.ModelBackend',
+    'guardian.backends.ObjectPermissionBackend',
 ]
 # LOGIN_REDIRECT_URL = "/healthpass/user_home/"
 LOGOUT_REDIRECT_URL = "/accounts/login/"
