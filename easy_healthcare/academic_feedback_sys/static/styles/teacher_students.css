@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.3rem;
+    width: auto;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.content-table thead tr {
+    background-color: #009879;
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+}
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+    text-transform: capitalize;
+}
+.content-table tbody tr {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px; 
+}
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+/*
+    Other styles personally from me.
+*/
+@keyframes blink {
+    0% {
+        color:rgb(3, 92, 3);
+    }
+    50% {
+        color: rgb(18, 161, 18);
+    }
+    75% {
+        color: rgb(60, 206, 60); 
+    }
+    100% {
+        color: rgb(138, 237, 138);
+    }
+}
+.blinking-link {
+    animation: blink 5s infinite;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.icons span {
+    margin-left: 1rem;
+    color: #161515;
+}
+
+.icons {
+    color: #009879;
+}
+.icons:hover {
+    color: #009879;
+}
+.teacher-span {
+    cursor: pointer;
+}
+.teacher-display-div1 {
+    display: none;
+}
+.teacher-display-div2 {
+    display: block;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    font-size: medium;
+    background-color: #efefef;
+    border-radius: 5px;
+    border: 1px solid rgb(10, 10, 10);
+    color: rgb(31, 26, 26);
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-transform: capitalize;
+    color: #fff;
+    border: 3px solid rgb(0, 0, 0);
+}
+.error {   
+    background-color: #fd2f2f;
+}
+.success {
+    background-color: #28a745;
+}
+.success h1 {
+    flex: 10;
+}
+.error h1 {   
+    flex: 10;
+}
+.staff {
+    text-decoration: none;
+    flex: 1;
+    display: grid;
+    height: 50px;
+    background: linear-gradient(
+        #302c2c,
+        #161515,
+        rgb(31, 22, 22)
+    );
+    place-items: center;
+    position: relative;
+    bottom: -27px;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 3px;
+    border-radius: 5px;
+}
+.success .staff {
+    color:#53ff76
+}
+.error .staff {
+    color:#ff5353
+}
