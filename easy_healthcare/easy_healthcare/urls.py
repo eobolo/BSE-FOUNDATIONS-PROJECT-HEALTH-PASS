@@ -39,8 +39,9 @@ urlpatterns += [
 ]
 
 # Add the custom error handler view to the handlers
-handler500 = "healthpass.views5.custom_error_500"
-handler404 = "healthpass.views5.custom_error_404"
-handler403 = "healthpass.views5.custom_error_403"
-handler400 = "healthpass.views5.custom_error_400"
+# handler500 = "healthpass.views5.custom_error_500"
+# handler404 = "healthpass.views5.custom_error_404"
+# handler403 = "healthpass.views5.custom_error_403"
+# handler400 = "healthpass.views5.custom_error_400"
+handler403 = "academic_feedback_sys.views.custom_error_403"
 
