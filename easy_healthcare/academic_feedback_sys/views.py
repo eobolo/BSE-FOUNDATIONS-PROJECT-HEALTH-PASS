@@ -258,7 +258,7 @@ def TeacherEditStudentGrade(request, first_name, middle_name, last_name):
         scores_dict = {f"{subject_list[i]}": Score.objects.filter(score=int(score_list[i])).first() for i in range(0, len(score_list))}
 
         # now it is time to create the grade using the Grade class
-        Grade.objects.create(
+        grade = Grade(
             student=clicked_student,
             class_level=class_level_obj,
             semester=semester_obj,
@@ -298,6 +298,7 @@ def TeacherEditStudentGrade(request, first_name, middle_name, last_name):
             marketing_score=scores_dict["MKT"],
             semester_year=datetime.date.today(),
         )
+        grade.save()
         # save a session message saying the grade has been saved
         request.session["success_message"] = f"Student {first_name} {middle_name} {last_name} grade has been saved!!!"
         return redirect(request.path)
