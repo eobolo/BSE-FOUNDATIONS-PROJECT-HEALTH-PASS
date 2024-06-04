@@ -33,7 +33,6 @@ body {
 }
 .content-table tbody tr {
     border-bottom: 1px solid #ddd;
-    padding-bottom: 10px; 
 }
 .content-table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;

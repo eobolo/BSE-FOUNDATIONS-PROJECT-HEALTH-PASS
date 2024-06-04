@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student Grade</title>
+</head>
+<body>
+    {% if duplicate_subject_error %}
+        <p>{{duplicate_subject_error}}</p>
+    {% endif %}
+    {% if success_message %}
+        <p>{{success_message}}</p>
+    {% endif %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>
+            <label for="first_name">first name:</label>
+            <input id="first_name" type="text" name="first_name" value="{{first_name}}">
+        </p>
+        <p>
+            <label for="middle_name">middle name:</label>
+            <input id="middle_name" type="text" name="middle_name" value="{{middle_name}}">
+        </p>
+        <p>
+            <label for="last_name">last name:</label>
+            <input id="last_name" type="text" name="last_name" value="{{last_name}}">
+        </p>
+        {{class_level_form.as_p}}
+        {{semester_form.as_p}}
+        {% for subject_name, subject_form in subjects.items %}
+            <p>
+                <label for="{{subject_name}}">{{subject_name}}</label>
+                {{subject_form}}
+            </p>
+            {% for score_name, score_form in scores.items %}
+                {% if forloop.counter == forloop.parentloop.counter %}
+                    <p>
+                        <label for="{{score_name}}">{{score_name}}</label>
+                        {{score_form}}
+                    </p>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <button type="submit">
+            submit grade
+        </button>
+    </form>
+</body>
+</html>
