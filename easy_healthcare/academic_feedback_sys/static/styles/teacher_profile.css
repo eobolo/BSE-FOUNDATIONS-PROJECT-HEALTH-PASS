@@ -48,7 +48,6 @@ body {
     overflow: hidden;
     font-size: 20px;
     font-weight: 500;
-    cursor: pointer;
 }
 .profile__upload:hover {
     background: #0a9f81;  
@@ -56,6 +55,9 @@ body {
 
 .profile__upload:active {
     background: #025040;  
+}
+.profile__upload .profile__text label {
+    cursor: pointer;
 }
 .profile__text,
 .profile__icon {
