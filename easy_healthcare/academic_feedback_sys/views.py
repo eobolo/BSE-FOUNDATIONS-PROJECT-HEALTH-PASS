@@ -63,7 +63,17 @@ def TeacherProfile(request):
         logout(request)
         redirect_login_response = set_view_cookies(request)
         return redirect_login_response
-    pass
+    if request.user.is_staff == True:
+        # create a context saving the teacher's object
+        # can be gotten from request object easily
+        # then return a response from the render object
+        context_variable = {}
+        logged_teacher_obj = request.user
+        context_variable["logged_teacher_obj"] = logged_teacher_obj
+        return render(request, template_name, context_variable)
+    # if the user isn't a staff send the person to a 403 error page
+    # TODO later, but for now just pass
+    raise PermissionDenied
 
 @login_required
 def TeacherStudents(request):

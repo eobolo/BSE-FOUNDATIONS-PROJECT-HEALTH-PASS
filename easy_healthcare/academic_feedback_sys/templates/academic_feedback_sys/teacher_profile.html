@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{logged_teacher_obj.first_name}} Profile</title>
+    <link rel="stylesheet" href="{% static './styles/teacher_profile.css' %}">
+</head>
+
+<body>
+    <div class="homepage">
+        <a href="{% url 'academic:staff' %}" class="staff">home</a>
+    </div>
+    <div class="profile">
+        <img class="profile__image" src="" alt="Profile image">
+        <div class="profile__name">
+            <h2>{{logged_teacher_obj.first_name}} {{logged_teacher_obj.last_name}}</h2>
+        </div>
+        <div class="profile__title">
+            <h3>{{logged_teacher_obj.teacher.subject.get_subject_display}} Teacher</h3>
+        </div>
+        <div class="profile__upload">
+            <span class="profile__text">
+                <label for="{{logged_teacher_obj.id}}">Upload</label>
+                <input style="display: none;" class="upload-image" id="{{logged_teacher_obj.id}}" type="file" accept="image/*" />
+            </span>
+            <span class="profile__icon">
+                <ion-icon name="cloud-upload-outline"></ion-icon>
+            </span>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</body>
+<script src="{% static './scripts/teacher_profile.js' %}"></script>
+
+</html>
