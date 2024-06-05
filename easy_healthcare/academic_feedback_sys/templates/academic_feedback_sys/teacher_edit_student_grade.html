@@ -5,47 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Student Grade</title>
+    <script src="https://kit.fontawesome.com/95cc5340fb.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static './styles/teacher_edit_student_grade.css' %}">
 </head>
 <body>
+    <div class="homepage">
+        <a href="{% url 'academic:staff' %}" class="staff">home</a>
+    </div>
     {% if duplicate_subject_error %}
-        <p>{{duplicate_subject_error}}</p>
+        <div class="error">
+            <div class="empty"></div>
+            <div class="error-text">{{duplicate_subject_error}}</div>
+        </div>
     {% endif %}
     {% if success_message %}
-        <p>{{success_message}}</p>
+        <div class="success">
+            <div class="empty"></div>
+            <div class="success-text">{{success_message}}</div>
+        </div>
     {% endif %}
     <form action="" method="post">
         {% csrf_token %}
-        <p>
-            <label for="first_name">first name:</label>
-            <input id="first_name" type="text" name="first_name" value="{{first_name}}">
-        </p>
-        <p>
-            <label for="middle_name">middle name:</label>
-            <input id="middle_name" type="text" name="middle_name" value="{{middle_name}}">
-        </p>
-        <p>
-            <label for="last_name">last name:</label>
-            <input id="last_name" type="text" name="last_name" value="{{last_name}}">
-        </p>
-        {{class_level_form.as_p}}
-        {{semester_form.as_p}}
-        {% for subject_name, subject_form in subjects.items %}
-            <p>
-                <label for="{{subject_name}}">{{subject_name}}</label>
-                {{subject_form}}
-            </p>
-            {% for score_name, score_form in scores.items %}
-                {% if forloop.counter == forloop.parentloop.counter %}
-                    <p>
-                        <label for="{{score_name}}">{{score_name}}</label>
-                        {{score_form}}
-                    </p>
-                {% endif %}
+        <div class="form-flex">
+            <div>
+                <label for="first_name">first name:</label>
+                <input id="first_name" type="text" name="first_name" value="{{first_name}}" placeholder="Enter first name">
+            </div>
+            <div>
+                <label for="middle_name">middle name:</label>
+                <input id="middle_name" type="text" name="middle_name" value="{{middle_name}}" placeholder="Enter middle name">
+            </div>
+            <div>
+                <label for="last_name">last name:</label>
+                <input id="last_name" type="text" name="last_name" value="{{last_name}}" placeholder="Enter last name">
+            </div>
+            {{class_level_form.as_div}}
+            {{semester_form.as_div}}
+            {% for subject_name, subject_form in subjects.items %}
+                <div>
+                    <label for="{{subject_name}}">{{subject_name}}</label>
+                    {{subject_form}}
+                </div>
+                {% for score_name, score_form in scores.items %}
+                    {% if forloop.counter == forloop.parentloop.counter %}
+                        <div>
+                            <label for="{{score_name}}">{{score_name}}</label>
+                            {{score_form}}
+                        </div>
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
-        <button type="submit">
-            submit grade
-        </button>
+            <div>
+                <button type="submit" class="submit">
+                    <span class="submit__text">Add Grade</span>
+                    <span class="submit__icon">
+                        <ion-icon name="send-outline"></ion-icon>
+                    </span>
+                </button>
+            </div>
+        </div>
     </form>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 </body>
 </html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/95cc5340fb.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Grades</title>
+    <link rel="stylesheet" href="{% static './styles/teacher_recent_grades.css' %}">
+</head>
+
+<body>
+    {% if recent_grades %}
+    <table class="content-table">
+        <div class="container success">
+            <a href="{% url 'academic:staff' %}" class="staff">home</a>
+            <h1>Recently graded list</h1>
+            <p>
+                <i class="fa-solid fa-magnifying-glass icon" style="color: #000000;"></i>
+                <label for="search"></label>
+                <input id="search" type="text" class="input-search" role="search">
+            </p>
+        </div>
+        <thead class="first-head">
+            <tr>
+                <th>S/N</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>Class Level</th>
+                <th>Semester</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody class="filter">
+            {% for recent_grade in recent_grades %}
+            <tr>
+                <td class="data-id">{{forloop.counter}}</td>
+                <td class="first_name">{{recent_grade.student.first_name}}</td>
+                <td class="middle_name">{{recent_grade.student.middle_name}}</td>
+                <td class="last_name">{{recent_grade.student.last_name}}</td>
+                <td class="class_level">{{recent_grade.class_level.get_class_level_display}}</td>
+                <td class="semester">{{recent_grade.semester.semester}}</td>
+                <td class="year">{{recent_grade.semester_year}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <table style="display: none;">
+        <thead class="second-head">
+            <tr>
+                <th>S/N</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>Class Level</th>
+                <th>Semester</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody class="original">
+            {% for recent_grade in recent_grades %}
+            <tr>
+                <td class="data-id">{{forloop.counter}}</td>
+                <td class="first_name">{{recent_grade.student.first_name}}</td>
+                <td class="middle_name">{{recent_grade.student.middle_name}}</td>
+                <td class="last_name">{{recent_grade.student.last_name}}</td>
+                <td class="class_level">{{recent_grade.class_level.get_class_level_display}}</td>
+                <td class="semester">{{recent_grade.semester.semester}}</td>
+                <td class="year">{{recent_grade.semester_year}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="container error">
+        <a href="{% url 'academic:staff' %}" class="staff">home</a>
+        <h1>No Recently Upgraded Grades</h1>
+    </div>
+    {% endif %}
+</body>
+<script src="{% static './scripts/teacher_recent_grades.js' %}" defer></script>
+</html>

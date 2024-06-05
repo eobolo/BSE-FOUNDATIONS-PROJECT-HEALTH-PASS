@@ -106,7 +106,50 @@ def TeacherStudents(request):
 
 @login_required
 def TeacherRecentGraded(request):
-    pass
+    template_name = "academic_feedback_sys/teacher_recent_grades.html"
+    # check cookies even though the user is logged in from a previous session
+    # if any of the cookie has expired first logout the user.
+    # and the redirect to the login page with a next parameter
+    # add cookies and return the response
+    if not request.COOKIES.get("session-cookie", None) or not request.COOKIES.get("timed-cookie", None):
+        logout(request)
+        redirect_login_response = set_view_cookies(request)
+        return redirect_login_response
+    # now check if this user is a staff because some people can create healthpass login
+    # and would want to login to this app
+    if request.user.is_staff == True:
+        # create a context variable to store all students
+        # of that class teacher and a id integer list
+        # to store the student id's
+        id_list = None
+        context_variable = {}
+        class_teacher = request.user
+        # get the class teacher student, based on permission
+        # this returns a row of the student(s) that the class
+        # teacher as permission to edit their grade
+        # but not exactly the students but we have an information
+        # we need in those rows i.e the object_pk which is the
+        # student primary key i.e id in string
+        class_teacher_perm_students = UserObjectPermission.objects.filter(user=class_teacher).all()
+        # extract all ids in strings and convert to integers
+        # using list comprehension
+        id_list = [int(row.object_pk) for row in class_teacher_perm_students]
+        # then get all student objects now using this id list
+        class_teacher_students = Student.objects.filter(id__in=id_list)
+        # get the class teacher student grades that are filteres for this
+        # particular year, for these students, ordered by semester, semester_year__month
+        # and semester_year__day in descending order
+        current_date = datetime.datetime.now()
+        current_year = current_date.year
+        recent_grades = Grade.objects.filter(
+            student__in=class_teacher_students,
+            semester_year__year=current_year,
+        ).order_by("-semester", "-semester_year__month", "-semester_year__day")
+        context_variable["recent_grades"] = recent_grades
+
+        return render(request, template_name, context_variable)
+    
+    raise PermissionDenied
 
 @login_required
 def TeacherEditStudentGrade(request, first_name, middle_name, last_name):
