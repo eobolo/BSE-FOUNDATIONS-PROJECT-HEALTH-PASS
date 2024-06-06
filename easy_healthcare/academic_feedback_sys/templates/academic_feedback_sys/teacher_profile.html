@@ -14,6 +14,9 @@
         <a href="{% url 'academic:staff' %}" class="staff">home</a>
     </div>
     <div class="profile">
+        <div>
+            <p class="profile_pic_text">profile picture</p>
+        </div>
         <img class="profile__image" src="" alt="Profile image">
         <div class="profile__name">
             <h2>{{logged_teacher_obj.first_name}} {{logged_teacher_obj.last_name}}</h2>
