@@ -18,6 +18,12 @@
         <div class="profile__name">
             <h2>{{logged_teacher_obj.first_name}} {{logged_teacher_obj.last_name}}</h2>
         </div>
+        <div class="profile__email">
+            <h2>{{logged_teacher_obj.email}}</h2>
+        </div>
+        <div class="profile__department">
+            <h2>{{logged_teacher_obj.teacher.subject.get_subject_display}} Department</h2>
+        </div>
         <div class="profile__title">
             <h3>{{logged_teacher_obj.teacher.subject.get_subject_display}} Teacher</h3>
         </div>
