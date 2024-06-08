@@ -5,7 +5,8 @@ from django.urls import reverse
 from django.utils.http import urlencode
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
-import plotly.express as px
+import plotly.graph_objs as go
+import plotly.io as pio
 
 
 import datetime
@@ -36,16 +37,8 @@ def send_html_email(urllink, email, school_name="child's"):
     msg.attach_alternative(html_content, "text/html")
     msg.send()
 
+
 def get_performance_context_bar_charts(grades, current_year):
-    # create a bunch of lists
-    """
-    all_html to help store the embedded htmls
-    per year based on the number of available grades
-    semester names and average stores the respective names
-    and average of all grades per semester and construct
-    a bar plot from there, finally the yearly average, give
-    the average of all semesters.
-    """
     all_html_graphs = []
     semester_averages = []
     semester_names = []
@@ -53,7 +46,6 @@ def get_performance_context_bar_charts(grades, current_year):
     yearly_name = []
     context_variable = {}
 
-    # record the grades per subjects
     for grade in grades:
         subjects = ["Mathematics", "English", "Physics", "Chemistry", "Biology", "Geography", "Civics", "Agricultural Science", "Economics", "Commerce", "Government", "Nutrition", "Religious Studies", "Technical Drawing", "Literature in English", "Accounting", "Marketing"]
         scores = [
@@ -75,48 +67,31 @@ def get_performance_context_bar_charts(grades, current_year):
             grade.accounting_score.score,
             grade.marketing_score.score
         ]
-        fig = px.bar(
-            x=subjects,
-            y=scores,
-            height=600,
-            title="Performance report bar chart for each subject",
-            labels={'x': 'Subjects', 'y': 'Scores'}
-        )
-        chart = fig.to_html()
+        fig = go.Figure(data=[go.Bar(x=subjects, y=scores)])
+        fig.update_layout(height=600, width=1500, xaxis_title='Subjects', yaxis_title='Scores', title={'text': "Performance report bar chart for each subject", 'y':0.9, 'x':0.5, 'xanchor': 'center', 'yanchor': 'top'})
+        chart = pio.to_html(fig, full_html=False)
         all_html_graphs.append(chart)
         semester_averages.append(sum(scores)/len(scores))
 
-    # now record the average semester(s) grade
     for i in range(0, len(semester_averages)):
         semester_names.append(f"semester-{i+1}")
-    
-    fig = px.bar(
-        x=semester_names,
-        y=semester_averages,
-        height=600,
-        title="Performance report bar chart per semester",
-        labels={'x': 'Semester', 'y': 'Semester Averages %'}
-    )
-    chart = fig.to_html()
+
+    fig = go.Figure(data=[go.Bar(x=semester_names, y=semester_averages)])
+    fig.update_layout(height=600, width=1500, xaxis_title='Semester', yaxis_title='Semester Averages %', title={'text': "Performance report bar chart per semester", 'y':0.9, 'x':0.5, 'xanchor': 'center', 'yanchor': 'top'})
+    chart = pio.to_html(fig, full_html=False)
     all_html_graphs.append(chart)
 
     if len(grades.all()) == 3:
         yearly_averages.append(sum(semester_averages)/len(semester_averages))
         yearly_name.append(f"{current_year}")
-        fig = px.bar(
-            x=yearly_name,
-            y=yearly_averages,
-            height=600,
-            title="Performance report bar chart per year",
-            labels={'x': 'Year', 'y': 'Yearly Average %'}
-        )
-        chart = fig.to_html()
+        fig = go.Figure(data=[go.Bar(x=yearly_name, y=yearly_averages)])
+        fig.update_layout(height=600, width=1500, xaxis_title='Year', yaxis_title='Yearly Average %', title={'text': "Performance report bar chart per year", 'y':0.9, 'x':0.5, 'xanchor': 'center', 'yanchor': 'top'})
+        chart = pio.to_html(fig, full_html=False)
         all_html_graphs.append(chart)
 
-    context_variable["all_html_graphs"] = all_html_graphs.append(chart)
-
-    # now finally return the context variable with all graphs
+    context_variable["all_html_graphs"] = all_html_graphs
     return context_variable
+
 
 def ParentReportSuccess(request):
     template_name = "academic_feedback_sys/parent_report_success.html"
@@ -154,6 +129,7 @@ def ParentReport(request, password):
             )
             return render(request, success_template_name, context_variable)
         context_variable = get_performance_context_bar_charts(selected_student_grade, current_year)
+        context_variable["selected_student"] = selected_student
         return render(request, success_template_name, context_variable)
     # return error template
     return render(request, error_template_name)

@@ -1,25 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        * {
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .show1 {
+            display: none;
+        }
+        .show2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1, p {
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
-    <main>
+    <main class="show1">
+        <div>
+            <h1>Performance Report of {{selected_student.first_name}}
+                {{selected_student.middle_name}} {{selected_student.last_name}}</h1>
+        </div>
         {% if no_data %}
-            <div>
-                <p>{{no_data}}</p>
-            </div>
+        <div>
+            <p>{{no_data}}</p>
+        </div>
         {% endif %}
         {% if all_html_graphs %}
-            {{all_html_graphs}}
-            {% for grade_graph in all_html_graphs %}
-                <div>{{ grade_graph|safe }}</div>
-            {% endfor %}
+        {{all_html_graphs}}
+        {% for grade_graph in all_html_graphs %}
+        <div>{{ grade_graph|safe }}</div>
+        {% endfor %}
         {% else %}
-            <p>Nothing is inside</p>
+        <p>Nothing is inside</p>
         {% endif %}
     </main>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Function to remove text content but keep child elements
+        function removeTextContent(element) {
+            element.childNodes.forEach(node => {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    node.nodeValue = '';
+                }
+            });
+        }
+
+        // Select the main element
+        const mainElement = document.querySelector('main');
+        if (mainElement) {
+            removeTextContent(mainElement);
+            mainElement.classList.remove('show1');
+            mainElement.classList.add('show2')
+        }
+    });
+</script>
+
 </html>
