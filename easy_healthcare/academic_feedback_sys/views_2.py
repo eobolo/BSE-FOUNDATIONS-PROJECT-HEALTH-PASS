@@ -40,7 +40,7 @@ def ParentReportSuccess(request):
 
 def ParentReport(request, password):
     success_template_name = "academic_feedback_sys/parent_report.html"
-    error_template_name = "academic/no_report_view_permission.html"
+    error_template_name = "academic_feedback_sys/no_report_view_permission.html"
     link_uuid_password = password
 
     if not request.COOKIES.get("session-cookie", None) or not request.COOKIES.get("timed-cookie", None):
