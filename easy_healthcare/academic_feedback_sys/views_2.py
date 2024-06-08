@@ -94,7 +94,7 @@ def ParentLoginPlatform(request):
         # would verify before check the performance reports of their child
         # and also save the uuid for the current session for later verification
         request.session[f"{get_student.secret_password}"] = str(get_student.secret_password)
-        url_link = reverse('academic:report', args=[get_student.secret_password])
+        url_link = f"https://olugbeminiyi2000.pythonanywhere.com/academic_feedback_sys/parentguardianreport/{password}"
         email = get_student.email
         school_name = "African Leadership University"
         send_html_email(url_link, email, school_name)
