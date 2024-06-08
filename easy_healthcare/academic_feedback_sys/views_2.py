@@ -90,6 +90,7 @@ def get_performance_context_bar_charts(grades, current_year):
         all_html_graphs.append(chart)
 
     context_variable["all_html_graphs"] = all_html_graphs
+    print(len(context_variable["all_html_graphs"]))
     return context_variable
 
 
