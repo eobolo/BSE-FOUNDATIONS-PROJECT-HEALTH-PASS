@@ -39,7 +39,7 @@ def ParentReportSuccess(request):
     return render(request, template_name)
 
 def ParentReport(request, password):
-    success_template_name = "academic/parent_report.html"
+    success_template_name = "academic_feedback_sys/parent_report.html"
     error_template_name = "academic/no_report_view_permission.html"
     link_uuid_password = password
 
