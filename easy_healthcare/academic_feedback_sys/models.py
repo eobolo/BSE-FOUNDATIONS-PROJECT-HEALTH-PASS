@@ -70,6 +70,7 @@ class Student(models.Model):
     last_name = models.CharField(
         max_length=300,
     )
+    email = models.EmailField()
     secret_password = models.UUIDField(
             default=uuid.uuid4,
             editable=False,

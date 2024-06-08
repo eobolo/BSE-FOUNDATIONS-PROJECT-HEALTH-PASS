@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from . import views_2
 
 
 app_name = "academic_feedback_sys"
@@ -11,4 +12,6 @@ urlpatterns = [
     path("teacherstudents/", views.TeacherStudents, name="students"),
     path("teacherrecentgraded/", views.TeacherRecentGraded, name="recent_grades"),
     path("teachereditstudent/<str:first_name>/<str:middle_name>/<str:last_name>/", views.TeacherEditStudentGrade, name="edit_student_grade"),
+    # PARENT PATHS
+    path("parentguardianplatform", views_2.ParentLoginPlatform, name="parent_login")
 ]

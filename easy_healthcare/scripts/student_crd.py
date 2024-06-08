@@ -113,6 +113,7 @@ def run(*args):
                             first_name=first_name.capitalize(),
                             middle_name=middle_name.capitalize(),
                             last_name=last_name.capitalize(),
+                            email=guardian_email,
                         )
                         add_student.teachers.set(student_teachers)
                         add_student.save()
