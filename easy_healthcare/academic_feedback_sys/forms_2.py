@@ -16,7 +16,7 @@ class ParentViewForm(forms.Form):
         max_length=200,
         widget=forms.TextInput(attrs={"placeholder": "Enter your last name"}),
     )
-    password = forms.CharField(
+    password = forms.UUIDField(
         required=True,
         widget=forms.PasswordInput(attrs={"placeholder": "Enter your uuid password"}),
     )

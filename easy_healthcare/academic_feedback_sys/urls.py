@@ -13,5 +13,7 @@ urlpatterns = [
     path("teacherrecentgraded/", views.TeacherRecentGraded, name="recent_grades"),
     path("teachereditstudent/<str:first_name>/<str:middle_name>/<str:last_name>/", views.TeacherEditStudentGrade, name="edit_student_grade"),
     # PARENT PATHS
-    path("parentguardianplatform", views_2.ParentLoginPlatform, name="parent_login")
+    path("parentguardianplatform/", views_2.ParentLoginPlatform, name="parent_login"),
+    path("parentguardianreport/<uuid:password>/", views_2.ParentReport, name="report"),
+    path("parentguardiansuccess/", views_2.ParentReportSuccess, name="report_success"),
 ]

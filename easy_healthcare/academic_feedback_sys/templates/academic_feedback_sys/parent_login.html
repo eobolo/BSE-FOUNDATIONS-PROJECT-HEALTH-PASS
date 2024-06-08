@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% load crispy_forms_tags %}
+    <main>
+        <div>
+            {% if error_message %}
+                <p>{{error_message}}</p>
+            {% endif %}
+        </div>
+        <div>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{parent_form|crispy}}
+                <button type="submit">
+                    login
+                </button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
