@@ -12,6 +12,14 @@
                 <p>{{no_data}}</p>
             </div>
         {% endif %}
+        {% if all_html_graphs %}
+            {{all_html_graphs}}
+            {% for grade_graph in all_html_graphs %}
+                <div>{{ grade_graph|safe }}</div>
+            {% endfor %}
+        {% else %}
+            <p>Nothing is inside</p>
+        {% endif %}
     </main>
 </body>
 </html>

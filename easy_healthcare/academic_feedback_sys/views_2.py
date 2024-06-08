@@ -78,13 +78,12 @@ def get_performance_context_bar_charts(grades, current_year):
         fig = px.bar(
             x=subjects,
             y=scores,
-            color=f"{grade.semester.semester}",
             height=600,
             title="Performance report bar chart for each subject",
             labels={'x': 'Subjects', 'y': 'Scores'}
         )
         chart = fig.to_html()
-        context_variable["all_html_grahs"] = all_html_graphs.append(chart)
+        all_html_graphs.append(chart)
         semester_averages.append(sum(scores)/len(scores))
 
     # now record the average semester(s) grade
@@ -94,13 +93,12 @@ def get_performance_context_bar_charts(grades, current_year):
     fig = px.bar(
         x=semester_names,
         y=semester_averages,
-        color="Average per semester",
         height=600,
         title="Performance report bar chart per semester",
         labels={'x': 'Semester', 'y': 'Semester Averages %'}
     )
     chart = fig.to_html()
-    context_variable["all_html_grahs"] = all_html_graphs.append(chart)
+    all_html_graphs.append(chart)
 
     if len(grades.all()) == 3:
         yearly_averages.append(sum(semester_averages)/len(semester_averages))
@@ -108,13 +106,14 @@ def get_performance_context_bar_charts(grades, current_year):
         fig = px.bar(
             x=yearly_name,
             y=yearly_averages,
-            color="Average per current year",
             height=600,
             title="Performance report bar chart per year",
             labels={'x': 'Year', 'y': 'Yearly Average %'}
         )
         chart = fig.to_html()
-        context_variable["all_html_grahs"] = all_html_graphs.append(chart)
+        all_html_graphs.append(chart)
+
+    context_variable["all_html_graphs"] = all_html_graphs.append(chart)
 
     # now finally return the context variable with all graphs
     return context_variable
@@ -154,8 +153,6 @@ def ParentReport(request, password):
                 selected_student.last_name
             )
             return render(request, success_template_name, context_variable)
-        # delete uuid password in session before getting context_variable
-        del request.session[f"{link_uuid_password}"]
         context_variable = get_performance_context_bar_charts(selected_student_grade, current_year)
         return render(request, success_template_name, context_variable)
     # return error template
