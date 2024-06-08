@@ -48,6 +48,7 @@ def ParentReport(request, password):
         return redirect_login_response
     
     if request.session.get(f"{link_uuid_password}", None):
+        del request.session[f"{link_uuid_password}"]
         return render(request, success_template_name)
     return render(request, error_template_name)
 
