@@ -16,6 +16,12 @@ body {
     padding-top: 3rem;
 }
 
+.Error {
+    background: rgb(232 109 109);
+    padding: 0px 10px;
+    border: 2px solid #121212;
+    border-radius: 5px;
+}
 .errorlist {
     display: none;
 }

@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(-135deg, #fff, #ede2f2); 
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-div {
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-div {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+h1 {
+    font-weight: 400;
+}
+.Error {
+    background: rgb(232 109 109);
+    padding: 0px 10px;
+    border: 2px solid #121212;
+    border-radius: 5px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+}
+
+.wrapper {
+    width: 450px;
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .input-data {
+    height: 40px;
+    width: 100%;
+    position: relative;
+}
+
+.wrapper .input-data input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid silver;
+    font-size: 18px;
+    outline: none;  
+}
+
+.wrapper .input-data label {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    color: grey;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input-data input:focus ~ label,
+.input-data input:valid ~ label {
+    transform: translateY(-25px);
+    font-size: 18px;
+    color: #06efa2;
+}
+
+.input-data input:focus,
+.input-data input:active {
+    border-bottom: 2px solid #06efa2;
+}
+
+.submit {
+    display: inline-flex;
+    padding: 0;
+    height: 70px;
+    position: relative;
+    left: 27.5%;
+    background: #3ec2a8;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.submit__text, .submit__icon {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 24px;
+    color: #fff;
+    height: 100%;
+}
+
+.submit__icon {
+    font-size: 1.5em;
+    background: rgba(0, 0, 0, 0.08);
+}
+.submit:hover {
+    background: #0a9f81;
+}
+
+.submit:active {
+    background: #025040;
+}

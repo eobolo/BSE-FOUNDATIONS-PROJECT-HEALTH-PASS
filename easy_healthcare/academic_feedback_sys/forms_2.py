@@ -4,19 +4,19 @@ class ParentViewForm(forms.Form):
     first_name = forms.CharField(
         required=True,
         max_length=200,
-        widget=forms.TextInput(attrs={"placeholder": "Enter your first name"}),
+        widget=forms.TextInput(),
     )
     middle_name = forms.CharField(
         required=True,
         max_length=200,
-        widget=forms.TextInput(attrs={"placeholder": "Enter your middle name"}),
+        widget=forms.TextInput(),
     )
     last_name = forms.CharField(
         required=True,
         max_length=200,
-        widget=forms.TextInput(attrs={"placeholder": "Enter your last name"}),
+        widget=forms.TextInput(),
     )
     password = forms.UUIDField(
         required=True,
-        widget=forms.PasswordInput(attrs={"placeholder": "Enter your uuid password"}),
+        widget=forms.PasswordInput(),
     )

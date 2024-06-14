@@ -161,7 +161,7 @@ section:nth-of-type(odd) {
 
 .even-div-animation {
     animation-name: slideinsectionfromright;
-    animation-duration: 1s;
+    animation-duration: 3s;
     animation-fill-mode: forwards;
     display: grid;
     place-items: center;
@@ -183,7 +183,7 @@ section:nth-of-type(odd) {
 }
 .even-div-animation-reverse {
     animation-name: slideinsectiontoright;
-    animation-duration: 1s;
+    animation-duration: 3s;
     animation-fill-mode: forwards;
 }
 
@@ -197,7 +197,7 @@ section:nth-of-type(odd) {
 }
 .odd-div-animation {
     animation-name: slideinsectionfromleft;
-    animation-duration: 1s;
+    animation-duration: 3s;
     animation-fill-mode: forwards;
     display: grid;
     place-items: center;
@@ -219,7 +219,7 @@ section:nth-of-type(odd) {
 }
 .odd-div-animation-reverse {
     animation-name: slideinsectiontoleft;
-    animation-duration: 1s;
+    animation-duration: 3s;
     animation-fill-mode: forwards;
 }
 

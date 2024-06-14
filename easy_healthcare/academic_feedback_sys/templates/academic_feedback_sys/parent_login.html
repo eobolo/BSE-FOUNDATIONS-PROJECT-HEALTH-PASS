@@ -1,27 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static './styles/parent_login.css' %}">
+    <link rel="icon" href="https://i.ibb.co/gDmm74W/academic-feedback-logo.png" type="image/png">
     <title>Document</title>
 </head>
 <body>
     {% load crispy_forms_tags %}
     <main>
-        <div>
-            {% if error_message %}
+        {% if error_message %}
+            <div class="Error">
                 <p>{{error_message}}</p>
-            {% endif %}
-        </div>
-        <div>
+            </div>
+        {% endif %}
+        <div class="form-div">
+            <div class="header-div">
+                <h1>Login to Parent's Portal</h1>
+            </div>
             <form action="" method="post">
                 {% csrf_token %}
-                {{parent_form|crispy}}
-                <button type="submit">
-                    login
-                </button>
+                <div class="wrapper">
+                    <div class="input-data">
+                        {{parent_form.first_name}}
+                        <div class="underline"></div>
+                        {{parent_form.first_name.label_tag}}
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <div class="input-data">
+                        {{parent_form.middle_name}}
+                        <div class="underline"></div>
+                        {{parent_form.middle_name.label_tag}}
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <div class="input-data">
+                        {{parent_form.last_name}}
+                        <div class="underline"></div>
+                        {{parent_form.last_name.label_tag}}
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <div class="input-data">
+                        {{parent_form.password}}
+                        <div class="underline"></div>
+                        {{parent_form.password.label_tag}}
+                    </div>
+                </div>
+                <div class=" wrapper button">
+                    <button type="submit" class="submit">
+                        <span class="submit__text">Login</span>
+                        <span class="submit__icon">
+                            <ion-icon name="log-in-outline"></ion-icon>
+                        </span>
+                    </button>
+                </div>
             </form>
         </div>
     </main>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 </body>
 </html>
