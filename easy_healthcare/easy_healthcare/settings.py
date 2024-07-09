@@ -142,7 +142,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 # LOGIN_REDIRECT_URL = "/healthpass/user_home/"
 LOGOUT_REDIRECT_URL = "/accounts/login/"
-LOGIN_REDIRECT_URL = "/academic_feedback_sys/teacherhome/"
+# LOGIN_REDIRECT_URL = "/academic_feedback_sys/teacherhome/"
 
 # define your media url and root
 MEDIA_BASE_DIR = BASE_DIR.parent.parent  # i.e SE_FOUNDATIONS_PROJECT

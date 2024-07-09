@@ -12,14 +12,14 @@
     <body>
         {% if form.errors %}
             <div class="Error">
-                <p>Incorrect correct username or password, both fields are case sensitive.</p>
+                <p>Incorrect username or password, both fields are case sensitive 😿.</p>
             </div>
         {% endif %}
         <div class="form-div">
              <div class="header-div">
                 <h1>Login to Teacher's Portal</h1>
             </div>
-            <form method="post" action="{% url 'login' %}" class="form-form">
+            <form method="post" action="{% url 'academic:my_login' %}" class="form-form">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <i class="fa-solid fa-unlock password-icon"></i>

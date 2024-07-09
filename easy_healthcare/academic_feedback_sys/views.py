@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth import logout
@@ -16,7 +17,7 @@ access_denied_error_template = "academic_feedback_sys/no_permission.html"
 
 # global utility functions
 def set_view_cookies(view_request):
-    login_url = reverse('login') + '?' + urlencode({"next": view_request.path})
+    login_url = reverse('academic:my_login') + '?' + urlencode({"next": view_request.path})
     redirect_login_response = redirect(login_url)
     redirect_login_response.set_cookie("session-cookie", "short-cookie")
     redirect_login_response.set_cookie("timed-cookie", "long-cookie", max_age=cookie_time)
@@ -26,8 +27,26 @@ def set_view_cookies(view_request):
 def custom_error_403(request, exception=None):
     return render(request, access_denied_error_template, status=403)
 
+
+# define custom_login view
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'
+
+    def get_success_url(self):
+        # Check if the 'next' parameter is present in the URL
+        next_url = self.get_redirect_url()
+        if next_url:
+            return next_url
+        # Otherwise return teacher home page from normal login action
+        return reverse('academic:staff')
+
+# define custom_logout view
+def custom_logout(request):
+    logout(request)
+    return redirect("academic:my_login")
+
 # Teacher Views
-@login_required
+@login_required(login_url="/academic_feedback_sys/my_login/")
 def TeacherHome(request):
     template_name = "academic_feedback_sys/teacher_home.html"
     # check cookies even though the user is logged in from a previous session
@@ -52,7 +71,7 @@ def TeacherHome(request):
     # TODO later, but for now just pass
     raise PermissionDenied
 
-@login_required
+@login_required(login_url="/academic_feedback_sys/my_login/")
 def TeacherProfile(request):
     template_name = "academic_feedback_sys/teacher_profile.html"
     # check cookies even though the user is logged in from a previous session
@@ -75,7 +94,7 @@ def TeacherProfile(request):
     # TODO later, but for now just pass
     raise PermissionDenied
 
-@login_required
+@login_required(login_url="/academic_feedback_sys/my_login/")
 def TeacherStudents(request):
     template_name = "academic_feedback_sys/teacher_students.html"
     # check cookies even though the user is logged in from a previous session
@@ -114,7 +133,7 @@ def TeacherStudents(request):
         return render(request, template_name, context_variable)
     raise PermissionDenied
 
-@login_required
+@login_required(login_url="/academic_feedback_sys/my_login/")
 def TeacherRecentGraded(request):
     template_name = "academic_feedback_sys/teacher_recent_grades.html"
     # check cookies even though the user is logged in from a previous session
@@ -161,7 +180,7 @@ def TeacherRecentGraded(request):
     
     raise PermissionDenied
 
-@login_required
+@login_required(login_url="/academic_feedback_sys/my_login/")
 def TeacherEditStudentGrade(request, first_name, middle_name, last_name):
     template_name = "academic_feedback_sys/teacher_edit_student_grade.html"
     error_template = "academic_feedback_sys/no_edit_permission.html"

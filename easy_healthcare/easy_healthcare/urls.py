@@ -25,7 +25,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("healthpass/", include("healthpass.urls", namespace="health")),
     path("academic_feedback_sys/", include("academic_feedback_sys.urls", namespace="academic")),
-    path("accounts/", include("django.contrib.auth.urls")),
 ]
 
 # Serve the static HTML

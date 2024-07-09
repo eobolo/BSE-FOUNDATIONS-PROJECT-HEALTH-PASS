@@ -1,11 +1,15 @@
 from django.urls import path
-from . import views
-from . import views_2
+from . import views, views_2, views_3
 
 
 app_name = "academic_feedback_sys"
 
 urlpatterns = [
+    # AUTH PAGE
+    path("my_login/", views.CustomLoginView.as_view(), name="my_login"),
+    path("my_logout/", views.custom_logout, name="my_logout"),
+    # MAIN LANDING PAGE
+    path("dashboard/", views_3.DashBoard, name="dashboard"),
     # TEACHER PATHS
     path("teacherhome/", views.TeacherHome, name="staff"),
     path("teacherprofile/", views.TeacherProfile, name="profile"),

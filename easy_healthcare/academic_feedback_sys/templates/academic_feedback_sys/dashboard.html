@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Feedback System</title>
+    <link rel="stylesheet" href="{% static './styles/dashboard.css' %}">
+    <link rel="icon" href="https://i.ibb.co/gDmm74W/academic-feedback-logo.png" type="image/png">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to the Academic Performance System</h1>
+            <p>Streamlining grading and providing detailed analytics for parents.</p>
+        </header>
+        <div class="buttons">
+            <button class="login-btn" id="teacher-login-btn">Teacher Login</button>
+            <button class="login-btn" id="parent-login-btn">Parent Login</button>
+        </div>
+    </div>
+    <div>
+        <footer>
+            <p>&copy; 2024 Emmanuel Obolo. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="{% static './scripts/dashboard.js' %}"></script>
+</body>
+</html>
