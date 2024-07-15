@@ -68,7 +68,7 @@ def get_performance_context_bar_charts(grades, current_year):
             grade.marketing_score.score
         ]
         fig = go.Figure(data=[go.Bar(x=subjects, y=scores)])
-        fig.update_layout(height=600, width=1500, xaxis_title='Subjects', yaxis_title='Scores', title={'text': "Performance report bar chart for each subject", 'y':0.9, 'x':0.5, 'xanchor': 'center', 'yanchor': 'top'})
+        fig.update_layout(height=600, width=1500, xaxis_title='Subjects', yaxis_title='Scores', title={'text': f"Semester {grade.semester.semester} Performance report bar chart for each subject", 'y':0.9, 'x':0.5, 'xanchor': 'center', 'yanchor': 'top'})
         chart = pio.to_html(fig, full_html=False)
         all_html_graphs.append(chart)
         semester_averages.append(sum(scores)/len(scores))

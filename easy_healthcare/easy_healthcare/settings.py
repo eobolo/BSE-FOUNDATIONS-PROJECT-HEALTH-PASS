@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-%ux=9ptjlzqw3fsv%+hec$9nbczl5%345d(@xi8+04ka!vc8=="
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -141,7 +141,7 @@ AUTHENTICATION_BACKENDS = [
     'guardian.backends.ObjectPermissionBackend',
 ]
 # LOGIN_REDIRECT_URL = "/healthpass/user_home/"
-LOGOUT_REDIRECT_URL = "/accounts/login/"
+# LOGOUT_REDIRECT_URL = "/academic_feedback_sys/my_login/"
 # LOGIN_REDIRECT_URL = "/academic_feedback_sys/teacherhome/"
 
 # define your media url and root

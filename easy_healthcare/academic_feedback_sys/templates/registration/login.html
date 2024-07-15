@@ -22,12 +22,17 @@
             <form method="post" action="{% url 'academic:my_login' %}" class="form-form">
                 {% csrf_token %}
                 {{ form.as_p }}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
                 <i class="fa-solid fa-unlock password-icon"></i>
                 <i class="fa-solid fa-user user-icon"></i>
                 <div class="button-div">
                     <div class="dummy-div"></div>
                     <button type="submit">Login</button>
                 </div>
+                <div class="button-div" style="color:blue; display: flex; justify-content: center; margin-top: 1rem;">
+                    <div class="dummy-div"></div>
+                    <a href="{% url 'academic:dashboard' %}" style="text-decoration:none; display: flex; justify-content: center; align-items: center; width: 100px; height: 30px; border: 2px solid black; border-radius: 5px; background: white"><span>dasboard</span></a>
+                <div>
             </form>
         </div>
     </body>

@@ -36,6 +36,7 @@ class CustomLoginView(LoginView):
         # Check if the 'next' parameter is present in the URL
         next_url = self.get_redirect_url()
         if next_url:
+            print(next_url)
             return next_url
         # Otherwise return teacher home page from normal login action
         return reverse('academic:staff')
