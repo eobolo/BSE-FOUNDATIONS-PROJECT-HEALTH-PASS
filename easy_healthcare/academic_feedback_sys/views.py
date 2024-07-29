@@ -224,13 +224,15 @@ def TeacherEditStudentGrade(request, first_name, middle_name, last_name):
             # score modelform object to put in our form.
             # we need to automate this stuff
             # first let us get a list of the subjects
+            # dont change the order very delicate
             all_subjects = ["Mathematics", "English", "Physics", "Chemistry", "Biology", "Geography", "Civics", "Agricultural Science", "Economics", "Commerce", "Government", "Nutrition", "Religious Studies", "Technical Drawing", "Literature in English", "Accounting", "Marketing"]
+            # don't change this code very delicate
+            subject_codes = ["MATHS", "ENG", "PHYS", "CHEM","BIOL", "GEOG", "CIVS", "AGRIC", "ECON", "COMR", "GOVT", "NUTR", "RELISTUD", "TECHDRAW", "LITER", "ACCT", "MKT"]
             all_subjects_length = len(all_subjects)
-
             # get the classlevel, semester, score, and subject modelform object
             class_level_form = ClassLevelForm()
             semester_form = SemesterForm()
-            subject_form = SubjectForm()
+            subject_form = SubjectForm
             score_form = ScoreForm()
 
             # create a context to take first_name, middle_name, last_name
@@ -241,7 +243,7 @@ def TeacherEditStudentGrade(request, first_name, middle_name, last_name):
 
             # then do dict comphrehension to get a dictionary of subject name and their subject object
             # and also subject score name and score object
-            subjects = {all_subjects[i]: subject_form for i in range(0, all_subjects_length)}
+            subjects = {all_subjects[i]: subject_form({"subject": subject_codes[i]}) for i in range(0, all_subjects_length)}
             scores = {all_subjects[i]: score_form for i in range(0, all_subjects_length)}
 
             # then store these subjects and scores in context variabel along with class_level_form

@@ -28,7 +28,7 @@ class Subject(models.Model):
     subject = models.CharField(
         max_length=20,
         choices=SUBJECTS,
-        unique=True,
+        unique=False,
     )
 
     def __str__(self):
