@@ -28,6 +28,7 @@
                 <form method="post" action="{% url 'login' %}" class="form">
                     {% csrf_token %}
                     {{ form|crispy }}
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
                     <p class="form-container p">
                         <label style="display: none;" for="user_signin">UserName</label>
                         <input style="display: none;" id="user_signin" type="submit" name="user_signin" value="signin">
