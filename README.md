@@ -1,5 +1,22 @@
-## Install Python
+# About the Academic Feedback System
 
+The **Academic Feedback System** is a robust web application designed to bridge the communication gap between teachers and parents, ensuring a more transparent and efficient academic monitoring process. Developed by Emmanuel Obolo, this system aims to enhance the educational experience for students by providing detailed analytics on their academic performance.
+
+### Key Features
+
+- **Teacher Portal**:
+  - Secure login for teachers to manage student grades.
+  - Update and search for recent grades quickly.
+  - Manage grading tasks efficiently with an intuitive interface.
+
+- **Parent Portal**:
+  - Secure login for parents to view their child's academic performance.
+  - Access detailed performance analytics per semester, year, and individual courses.
+  - Visual representation of performance data using bar charts for easy understanding.
+
+# How to set it up.
+
+## Install Python
 Django is a Python web framework, thus requiring Python to be installed on your machine. At the time of writing, Python 3.12 is the latest version.
 
 ## Checkout Academic Feedback System and Healthpass
